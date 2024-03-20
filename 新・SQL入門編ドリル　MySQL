@@ -1,0 +1,681 @@
+新・SQL入門編02ドリル
+<会員のリストを取得しよう>
+step1　注文履歴を取得しよう
+SELECT * FROM ordered;
+/*コメントアウト　SELECT * FROM テーブル名 で、テーブル名 のテーブルのすべてのレコードを取得することができる
+よって、SELECT * FROM ordered; と書く*/
+
+step2　注文内容を取得しよう
+SELECT * FROM ordered_menu;
+/*ordered_menu テーブルのすべてのレコードを取得すればよい
+SELECT * FROM テーブル名 で、テーブル名 のテーブルのすべてのレコードを取得することができる
+よって、SELECT * FROM ordered_menu; と書く*/
+
+step3　メニューを取得しよう
+SELECT * FROM menu;
+/*問題文から、menu テーブルのすべてのレコードを取得すればよいとわかる。
+SELECT * FROM テーブル名 で、テーブル名 のテーブルのすべてのレコードを取得することができる
+よって、SELECT * FROM menu; と書く*/
+
+step4　カテゴリを取得しよう
+SELECT * FROM category;
+/*問題文から、category テーブルのすべてのレコードを取得すればよいとわかる
+SELECT * FROM テーブル名 で、テーブル名 のテーブルのすべてのレコードを取得することができる
+よって、SELECT * FROM category; と書く*/
+
+final　会員のリストを取得しよう
+SELECT * FROM customer;
+/*問題文から、customer テーブルのすべてのレコードを取得すればよいとわかる.
+SELECT * FROM テーブル名 で、テーブル名 のテーブルのすべてのレコードを取得することができる
+よって、SELECT * FROM customer; と書く*/
+
+<漢字名、ひらがな、入会日、居住地を取得しよう>
+step1　合計金額を取得しよう
+SELECT bill FROM ordered;
+/*問題文から、ordered テーブルの bill カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT bill FROM ordered; と書く*/
+  
+step2　注文番号を取得しよう
+SELECT ordered_id FROM ordered_menu;
+/*問題文から、ordered_menu テーブルの ordered_id カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT ordered_id FROM ordered_menu; と書く*/
+
+step3　メニュー名を取得しよう
+SELECT name FROM menu;
+/*問題文から、menu テーブルの name カラムを取得すればよいとわかる
+  SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT name FROM menu; と書く*/
+
+step4　カテゴリ名を取得しよう
+SELECT name FROM category;
+/*問題文から、category テーブルの name カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT name FROM category; と書く*/
+
+step5　居住地を取得しよう
+SELECT residence FROM customer;
+/*問題文から、customer テーブルの residence カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT residence FROM customer; と書く*/
+
+step6　注文数、小計を取得しよう
+SELECT num, sum FROM ordered_menu;
+/*問題文から、ordered_menu テーブルの num カラムと sum カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT num, sum FROM ordered_menu; と書く*/
+
+step7　メニュー名、価格を取得しよう
+SELECT name, price FROM menu;
+/*問題文から、menu テーブルの name カラムと price カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT name, price FROM menu; と書く*/
+
+step8　漢字名、ふりがなを取得しよう
+SELECT name, name_yomi FROM customer;
+/*問題文から、customer テーブルの name カラムと name_yomi カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT name, name_yomi FROM customer; と書く*/
+
+step9　注文番号、メニュー番号、注文数を取得しよう
+SELECT ordered_id, menu_id, num FROM ordered_menu;
+/*問題文から、ordered_menu テーブルの ordered_id カラムと menu_id カラム、num カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT ordered_id, menu_id, num FROM ordered_menu; と書く*/
+
+final　漢字名、ふりがな、入会日、居住地を取得しよう
+SELECT name, name_yomi, join_date, residence FROM customer;
+/*問題文から、customer テーブルの name カラムと name_yomi カラム、join_date カラム、residence カラムを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT name, name_yomi, join_date, residence FROM customer; と書く*/
+
+<メニューを安い順に並べ替えよう>
+step1　合計金額の昇順に並べ替えよう
+SELECT * FROM ordered ORDER BY bill;
+/*問題文から、ordered テーブルのすべてのレコードを、bill カラムの値の昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT * FROM ordered ORDER BY bill; と書く*/
+
+step2　注文数の昇順に並べ替えよう
+SELECT * FROM ordered_menu ORDER BY num;
+/*問題文から、ordered_menu テーブルのすべてのレコードを、num カラムの値の昇順に並べ替えればよいとわかる*
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT * FROM ordered_menu ORDER BY num; と書く*/
+
+step3　カテゴリ番号の昇順に並べ替えよう
+SELECT * FROM category ORDER BY category_id;
+/*問題文から、category テーブルのすべてのレコードを、category_id カラムの昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT * FROM category ORDER BY category_id; と書く*/
+
+step4　小計の昇順に並べ替えよう
+SELECT ordered_id, sum FROM ordered_menu ORDER BY sum;
+/*問題文から、
+category テーブルの ordered_id カラムと sum カラムを取得する
+sum カラムの昇順に並べ替える
+ことをすればよいとわかる
+SELECT ordered_id, sum FROM ordered_menu ORDER BY sum;
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT ordered_id, sum FROM ordered_menu ORDER BY sum; と書く
+*/
+
+step5　カテゴリ番号の昇順に並べ替えよう
+SELECT category_id, name FROM menu ORDER BY category_id;
+/*問題文から、
+category テーブルの category_id カラムと name カラムを取得する
+category_id カラムの昇順に並べ替える
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT category_id, name FROM menu ORDER BY category_id; と書く*/
+
+step6　通し番号の昇順に並べ替えよう
+SELECT customer_id, name, residence FROM customer ORDER BY customer_id;
+/*問題文から、
+customer テーブルの customer_id カラムと name カラム、residence カラムを取得する
+customer_id カラムの昇順に並べ替える
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT customer_id, name, residence FROM customer ORDER BY customer_id; と書く*/
+
+final　メニューを安い順に並べ替えよう
+SELECT * FROM menu ORDER BY price;
+/*問題文の「価格の安い順」は「価格の昇順」と読み替えることができる
+つまり、menu テーブルのすべてのレコードを price カラムの昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+よって、SELECT * FROM menu ORDER BY price; と書く*/
+
+<合計金額の高い順に並べ替えよう>
+step1　注文数の降順に並べ替えよう
+SELECT * FROM ordered_menu ORDER BY num DESC;
+/*問題文から、ordered_menu テーブルのすべてのレコードを、num カラムの値の降順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT * FROM ordered_menu ORDER BY num DESC; と書く*/
+
+step2　カテゴリ番号の降順に並べ替えよう
+SELECT * FROM category ORDER BY category_id DESC;
+/*問題文から、category テーブルのすべてのレコードを、category_id カラムの値の降順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT * FROM category ORDER BY category_id DESC; と書く*/
+
+step3　価格の降順に並べ替えよう
+SELECT * FROM menu ORDER BY price DESC;
+/*問題文から、menu テーブルのすべてのレコードを、price カラムの値の降順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT * FROM menu ORDER BY price DESC; と書く*/
+
+step4　小計の降順に並べ替えよう
+SELECT ordered_id, sum FROM ordered_menu ORDER BY sum DESC;
+/*問題文から、
+ordered_menu テーブルの ordered_id カラムと sum カラムを取得する
+sum カラムの降順に並べ替える
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT ordered_id, sum FROM ordered_menu ORDER BY sum DESC; と書く*/
+
+step5　注文番号の降順に並べ替えよう
+SELECT ordered_id, datetime FROM ordered ORDER BY ordered_id DESC;
+/*問題文から、
+ordered テーブルの ordered_id カラムと datetime カラムを取得する
+ordered_id カラムの降順に並べ替える
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT ordered_id, datetime FROM ordered ORDER BY ordered_id DESC; と書く*/
+
+step6　通し番号の降順に並べ替えよう
+SELECT customer_id, name, name_yomi FROM customer ORDER BY customer_id DESC;
+/*問題文から、
+customer テーブルの customer_id カラムと name カラム、name_yomi カラムを取得する
+customer_id カラムの降順に並べ替える
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT customer_id, name, name_yomi FROM customer ORDER BY customer_id DESC; と書く*/
+
+final　合計金額の高い順に並べ替えよう
+SELECT * FROM ordered ORDER BY bill DESC;
+/*問題文の「注文の合計金額の高い順」は「注文の合計金額の降順」と読み替えることができる
+つまり、ordered テーブルのすべてのレコードを bill カラムの降順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+よって、SELECT * FROM ordered ORDER BY bill DESC; と書く*/
+
+<入会した順に並べ替えよう>
+step1　日時の昇順に並べ替えよう
+SELECT * FROM ordered ORDER BY datetime;
+/*問題文から、ordered テーブルのすべてのレコードを、datetime カラムの値の昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+カラムの値が整数でないときも並べ替えることができる
+今回は日時の並べ替え
+よって、SELECT * FROM ordered ORDER BY datetime; と書く*/
+
+step2　カテゴリ名の昇順に並べ替えよう
+SELECT * FROM category ORDER BY name;
+/*問題文から、category テーブルのすべてのレコードを、name カラムの値の昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+カラムの値が整数でないときも並べ替えることができる
+今回は文字列の並べ替え
+よって、SELECT * FROM category ORDER BY name; と書く
+【 補足 】
+日本語の文字列を ORDER BY で並べ替える場合、環境によって並べ替えた結果が変わることがあります。
+たとえば、データベースで使用している文字コードが異なる場合、結果が異なることがあります。
+データベースで使用している文字コードは、SHOW CREATE DATABASE "データベース名" で確認できます。
+SQL ドリルの各問題では、test という名前のデータベースを使っています。*/
+
+step3　ふりがなの昇順に並べ替えよう
+SELECT * FROM customer ORDER BY name_yomi;
+/*問題文から、customer テーブルのすべてのレコードを、name_yomi カラムの値の昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+カラムの値が整数でないときも並べ替えることができる
+今回は文字列の並べ替え
+よって、SELECT * FROM customer ORDER BY name_yomi; と書く*/
+
+step4　メニュー名の昇順に並べ替えよう
+SELECT name, price FROM menu ORDER BY name;
+/*問題文から、
+menu テーブルの name カラムと price カラムを取得する
+name カラムの昇順に並べ替える
+ことをすればよいとわかる
+
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+カラムの値が整数でないときも並べ替えることができる
+今回は文字列の並べ替え
+よって、SELECT name, price FROM menu ORDER BY name; と書く*/
+
+step5　漢字名の昇順に並べ替えよう
+SELECT name, name_yomi FROM customer ORDER BY name;
+/*問題文から、
+customer テーブルの name カラムと name_yomi カラムを取得する
+name カラムの昇順に並べ替える
+ことをすればよいとわかる
+基本的に、漢字を昇順に並べ替えようとしても辞書順にならない
+これは、漢字に割り振られた文字コードを見て、並べ替えをおこなっているため
+文字コードとは、文字に割り振られる一意の値のことで、コンピュータが文字を扱うために使われる
+
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+カラムの値が整数でないときも並べ替えることができる
+今回は文字列の並べ替え
+よって、SELECT name, name_yomi FROM customer ORDER BY name; と書く*/
+
+final　入会した順に並べ替えよう
+SELECT * FROM customer ORDER BY join_date;
+/*問題文の「入会日が早い順」は「入会日の昇順」と読み替えることができる
+つまり、customer テーブルのすべてのレコードを join_date カラムの昇順に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+カラムの値が整数でないときも並べ替えることができる
+今回は日付の並べ替え
+よって、SELECT * FROM customer ORDER BY join_date; と書く*/
+
+<注文番号、小計、メニュー番号についての条件で並べ替えよう>
+step1　注文番号、注文数についての条件で並べ替えよう
+SELECT * FROM ordered_menu ORDER BY ordered_id, num DESC;
+/*問題文から、ordered_menu テーブルのすべてのレコードを
+ordered_id カラムの昇順
+そして ordered_id カラムの値が同じとき、num カラムの降順
+に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名1, カラム名2 DESC で、レコードを
+カラム名1 カラムの値の昇順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の降順
+に並べ替えることができる
+よって、SELECT * FROM ordered_menu ORDER BY ordered_id, num DESC; と書く*/
+
+step2　価格、メニュー名についての条件で並べ替えよう
+SELECT * FROM menu ORDER BY price DESC, name;
+/*問題文から、menu テーブルのすべてのレコードを
+price カラムの降順
+そして price カラムの値が同じとき、name カラムの昇順
+に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名1 DESC, カラム名2 で、レコードを
+カラム名1 カラムの値の降順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の昇順
+に並べ替えることができる
+よって、SELECT * FROM menu ORDER BY price DESC, name; と書く*/
+
+step3　注文数、小計についての条件で並べ替えよう
+SELECT ordered_id, num, sum FROM ordered_menu ORDER BY num DESC, sum DESC;
+/*問題文から、ordered_menu テーブルのすべてのレコードを
+num カラムの降順
+そして num カラムの値が同じとき、sum カラムの降順
+に並べ替えればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名1 DESC, カラム名2 DESC で、レコードを
+カラム名1 カラムの値の降順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の降順
+に並べ替えることができる
+よって、SELECT ordered_id, num, sum FROM ordered_menu ORDER BY num DESC, sum DESC; と書く*/
+
+step4　入会日、名前（ふりがな）についての条件で並べ替えよう
+SELECT join_date, name, name_yomi FROM customer ORDER BY join_date, name_yomi;
+/*問題文から、customer テーブルのすべてのレコードを
+join_date カラムの昇順
+そして join_date カラムの値が同じとき、name_yomi カラムの昇順
+に並べ替えればよいとわかる
+
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名1, カラム名2 で、レコードを
+カラム名1 カラムの値の昇順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の昇順
+に並べ替えることができる
+よって、SELECT join_date, name, name_yomi FROM customer ORDER BY join_date, name_yomi; と書く*/
+
+final　注文番号、小計、メニュー番号についての条件で並べ替えよう
+SELECT * FROM ordered_menu ORDER BY ordered_id DESC, sum DESC, menu_id;
+/*問題文から、ordered_menu テーブルのすべてのレコードを
+ordered_id カラムの降順
+そして ordered_id カラムの値が同じとき、sum カラムの降順
+さらに sum カラムの値も同じとき、menu_id カラムの昇順
+に並べ替えればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名1 DESC, カラム名2 DESC, カラム名3 で、レコードを
+カラム名1 カラムの値の降順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の降順
+さらに カラム名3 カラムの値が同じとき、カラム名3 カラムの値の昇順
+に並べ替えることができる
+よって、SELECT * FROM ordered_menu ORDER BY ordered_id DESC, sum DESC, menu_id; と書く*/
+
+<価格の高い順に10件取得しよう>
+step1　上から50件を取得しよう
+SELECT * FROM ordered_menu LIMIT 50;
+/*問題文から、ordered_menu テーブルの上から 50 件のレコードを取得すればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT * FROM ordered_menu LIMIT 50; と書く*/
+
+step2　上から25件を取得しよう
+SELECT ordered_id, num, sum FROM ordered_menu LIMIT 25;
+/*問題文から、ordered_menu テーブルの上から 25 件のレコードを取得すればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT ordered_id, num, sum FROM ordered_menu LIMIT 25; と書く*/
+
+step3　昇順に並べ替えて、上位10件を取得しよう
+SELECT * FROM ordered ORDER BY bill LIMIT 10;
+/*問題文から、
+ordered テーブルのすべてのレコードを、bill カラムの値の昇順に並べ替える
+上から 10 件取得する
+ことをすればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 で、レコードを カラム名 カラムの値の昇順に並べ替えることができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT * FROM ordered ORDER BY bill LIMIT 10; と書く*/
+
+step4　降順に並べ替えて、上位100件を取得しよう
+SELECT ordered_id, num, sum FROM ordered_menu ORDER BY sum DESC LIMIT 100;
+/*問題文から、
+ordered_menu テーブルの ordered_id カラムと num カラム、sum カラムを取得する
+sum カラムの値の降順に並べ替える
+上から 100 件取得する
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT ordered_id, num, sum FROM ordered_menu ORDER BY sum DESC LIMIT 100; と書く*/
+
+step5　複数の条件で並べ替えて、上位5件を取得しよう
+SELECT * FROM menu ORDER BY price, name LIMIT 5;
+/*問題文から、
+ordered_menu テーブルのすべてのレコードを
+price カラムの昇順
+そして price カラムの値が同じとき、name カラムの昇順
+に並べ替える
+上から 5 件取得する
+ことをすればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名1, カラム名2 で、レコードを
+カラム名1 カラムの値の昇順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の昇順
+に並べ替えることができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT * FROM menu ORDER BY price, name LIMIT 5; と書く*/
+
+step6  複数の条件で並べ替えて、上位30件を取得しよう
+SELECT name, name_yomi, join_date FROM customer ORDER BY join_date DESC, name_yomi LIMIT 30;
+/*問題文から、
+customer テーブルのすべてのレコードを
+join_date カラムの降順
+そして join_date カラムの値が同じとき、name_yomi カラムの昇順
+に並べ替える
+上から 30 件取得する
+ことをすればよいとわかる
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+ORDER BY カラム名1 DESC, カラム名2 で、レコードを
+カラム名1 カラムの値の降順
+そして カラム名1 カラムの値が同じとき、カラム名2 カラムの値の昇順
+に並べ替えることができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT name, name_yomi, join_date FROM customer ORDER BY join_date DESC, name_yomi LIMIT 30; と書く*/
+
+final　価格の高い順に10件取得しよう
+SELECT * FROM menu ORDER BY price DESC LIMIT 10;
+/*問題文の「価格の高い順に 10 件」は「価格の降順の上から 10 件」と読み替えることができる
+つまり
+menu テーブルのすべてのレコードを、price カラムの昇順に並べ替える
+上から 10 件取得する
+ことをすればよいとわかる
+SELECT * FROM テーブル名 で テーブル名 のテーブルのすべてのレコードを取得することができる
+ORDER BY カラム名 DESC で、レコードを カラム名 カラムの値の降順に並べ替えることができる
+LIMIT 件数 で、上から 件数 件を取得することができる
+よって、SELECT * FROM menu ORDER BY price DESC LIMIT 10; と書く*/
+
+新・SQL入門編03ドリル
+<バーガーを全種類取得しよう>
+step1　日時を指定して取得しよう
+SELECT * FROM ordered WHERE datetime = "2021-12-17 13:37:00";
+/*問題文から、ordered テーブルの datetime カラムの値が 2021-12-17 13:37:00 であるレコードを取得すればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime = "2021-12-17 13:37:00"; と書く*/
+
+step2　メニュー番号を指定して取得しよう
+SELECT menu_id, num FROM ordered_menu WHERE menu_id = 9;
+/*問題文から、ordered_menu テーブルについて、
+menu_id カラムと num カラムを取得する
+menu_id カラムの値が 9 であるレコードを絞り込む
+ことをすればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+よって、SELECT menu_id, num FROM ordered_menu WHERE menu_id = 9; と書く*/
+
+step3　価格を指定して取得しよう
+SELECT * FROM menu WHERE price = 250 ORDER BY name;
+/*問題文から、menu テーブルについて、
+price カラムの値が 250 であるレコードを絞り込む
+name カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE price = 250 ORDER BY name; と書く*/
+
+step4　カテゴリ番号を指定して取得しよう
+SELECT name, price FROM menu WHERE category_id = 4 ORDER BY price DESC;
+/*問題文から、menu テーブルについて、
+name カラムと price カラムを取得する
+category_id カラムの値が 4 であるレコードを絞り込む
+price カラムの降順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+よって、SELECT name, price FROM menu WHERE category_id = 4 ORDER BY price DESC; と書く*/
+
+step5　入会日を指定して取得しよう
+SELECT customer_id, name, name_yomi, residence FROM customer WHERE join_date = "2021-10-15" ORDER BY name_yomi LIMIT 2;
+/*問題文から、customer テーブルについて、
+customer_id カラムと name カラム、name_yomi カラム、residence カラムを取得する
+join_date カラムの値が 2021-10-15 であるレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+上位 2 件を取得する
+ことをすればよいとわかる問題文から、customer テーブルについて、
+customer_id カラムと name カラム、name_yomi カラム、residence カラムを取得する
+join_date カラムの値が 2021-10-15 であるレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+上位 2 件を取得する
+ことをすればよいとわかる
+
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+よって、SELECT customer_id, name, name_yomi, residence FROM customer WHERE join_date = "2021-10-15" ORDER BY name_yomi LIMIT 2; と書く
+【 補足 】
+日本語の文字列を ORDER BY で並べ替える場合、環境によって並べ替えた結果が変わることがあります。
+たとえば、データベースで使用している文字コードが異なる場合、結果が異なることがあります。
+データベースで使用している文字コードは、SHOW CREATE DATABASE "データベース名" で確認できます。
+SQL ドリルの各問題では、test という名前のデータベースを使っています。*/
+
+final　バーガーを全種類取得しよう
+SELECT * FROM menu WHERE category_id = 1 ORDER BY price DESC;
+/*問題文は、
+「カテゴリがバーガーのメニュー」=「menu テーブルの category_id が 1 のレコード」
+「価格の高い順」=「price カラムの降順」
+と読み替えることができる
+つまり、menu テーブルについて、
+category_id カラムの値が 1 であるレコードを絞り込む
+price カラムの降順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE category_id = 1 ORDER BY price DESC; と書く*/
+
+<入会日を指定して取得しよう>
+step1　日時を指定して取得しよう
+SELECT * FROM ordered WHERE datetime <> "2021-12-17 18:28:00";
+/*問題文から、ordered テーブルの datetime カラムの値が 2021-12-17 18:28:00 でないレコードを取得すればよいとわかる
+WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime <> "2021-12-17 18:28:00"; と書く*/
+
+step2　メニュー番号を指定して取得しよう
+step3　注文数を指定して取得しよう
+step4　カテゴリ番号を指定して取得しよう
+step5　居住地を指定して取得しよう
+final　入会日を指定して取得しよう
+
+<注文時刻を指定して取得しよう>
+step1　日時を指定して取得しよう
+step2　日時を指定して取得しよう(Part2)
+step3　小計を指定して取得しよう
+step4　注文数を指定して取得しよう
+step5　合計金額を指定して取得しよう
+step6　メニュー名を指定して取得しよう
+step7  入会日を指定して取得しよう
+final　注文時刻を指定して取得しよう
+
+<合計金額が813円に近い注文履歴を取得しよう>
+step1　注文数を指定して取得しよう
+step2　注文数を指定して取得しよう(Part2)
+step3　小計を指定して取得しよう
+step4　注文数を指定して取得しよう
+step5　合計金額を指定して取得しよう
+step6　メニュー名を指定して取得しよう
+step7  日時を指定して取得しよう
+final　合計金額が813円に近い注文履歴を取得しよう
+
+<居住地を指定して取得しよう>
+final  居住地を指定して取得しよう
+
+<居住地を指定して取得しよう>
+final　居住地を指定して取得しよう
+
+<12時台の注文履歴を取得しよう>
+step1　合計金額の範囲を指定して取得しよう
+step2　入会日の範囲を指定して取得しよう
+step3　メニュー名の範囲を指定して取得しよう
+step4　小計を範囲指定して取得しよう
+step5　価格を範囲指定して取得しよう
+step6　会員名の範囲を指定して取得しよう
+final　12時台の注文履歴を取得しよう
+
+<午前中の1000円以上の注文履歴を取得しよう>
+step1　合計金額を指定して取得しよう
+step2　日時を指定して取得しよう
+step3　カテゴリ番号と価格を指定して取得しよう
+step4　複合的な条件を指定して取得しよう
+step5　複合的な条件を指定して取得しよう(Part2)
+final　午前中の1000円以上の注文履歴を取得しよう
+
+<2つのバーガーの注文内容を取得しよう>
+step1　合計金額を指定して取得しよう
+step2　日時を指定して取得しよう
+step3　日時を指定して取得しよう(Part2)
+step4　複合的な条件を指定して取得しよう
+step5　複合的な条件を指定して取得しよう(Part2)
+final　2つのバーガーの注文内容を取得しよう
+
+<条件を満たす注文番号を取得しよう>
+step1　複合的な条件を指定して取得しよう
+step2　複合的な条件を指定して取得しよう(Part2)
+step3  複合的な条件を指定して取得しよう(Part3)
+step4  複合的な条件を指定して取得しよう(Part4)
+final  複合的な条件を指定して取得しよう
+
+<謝罪咲を調べよう>
+step1　カテゴリ番号を指定して取得しよう
+step2　日時を指定して取得しよう
+step3　価格を指定して取得しよう
+step4　複合的な条件を指定して取得しよう
+final　謝罪先を調べよう
+
+<ゲームの勝敗を調べよう>
+step1　カテゴリ番号を指定して取得しよう
+step2　居住地を指定して取得しよう
+step3　複合的な条件を指定して取得しよう
+step4　複合的な条件を指定して取得しよう(Part2)
+step5　居住地を指定して取得しよう(Part2)
+final  ゲームの勝敗を調べよう
+
+<同僚を助けよう>
+step1　メニュー名を指定して取得しよう
+step2　漢字名を指定して取得しよう
+step3　会員名を指定して取得しよう
+step4　居住地を指定して取得しよう
+final　同僚を助けよう
+
+<同僚に協力しよう>
+step1　メニュー名を指定して取得しよう
+step2　漢字名を指定して取得しよう
+step3　会員名を指定して取得しよう
+step4　居住地を指定して取得しよう
+final　同僚に協力しよう
+
+<しりとりで勝つ>
+step1　メニュー名を指定して取得しよう
+step2　漢字名を指定して取得しよう
+step3　会員名を指定して取得しよう
+step4　居住地を指定して取得しよう
+final　しりとりで勝つ
+
+新・SQL入門編05ドリル
+<カテゴリごとの売上を求めよう>
+step1　売上を求めよう
+step2　売れた個数の合計を求めよう
+step3　全部1個ずつ
+step4　メニューごとの売上を求めよう
+final　カテゴリごとの売上を求めよう
+
+<カテゴリごとの平均価格を求めよう>
+step1　注文金額の平均を求めよう
+step2　注文数の平均を求めよう
+step3　全メニューの平均価格を求めよう
+step4　メニューごとの平均注文数を求めよう
+final　カテゴリごとの平均価格を求めよう
+
+<各注文の最高単価メニューを求めよう>
+step1　最高額のメニューを求めよう
+step2　最低額のメニューを求めよう
+step3　注文金額の最低額と最高額を求めよう
+step4　カテゴリごとの最安・最高メニューを求めよう
+step5　ポテト王
+final　各注文の最高単価メニューを求めよう
+
+<カラムに名前を付けてみよう4>
+step1 カラムに名前を付けてみよう1
+step2 カラムに名前を付けてみよう2
+step3 カラムに名前を付けてみよう3
+final カラムに名前を付けてみよう4
+
+<会員が多い都道府県を調べよう>
+step1　一定以上の売上のメニューを調べよう
+step2　5品以上の注文を調べよう
+step3　平均注文数が多いメニューを調べよう
+step4　メニューを3種類頼んだ注文を調べよう
+final　会員が多い都道府県を調べよう
+
+<安くてたくさん>
+step1　午後の売上が一定以上のメニューを調べよう
+step2　会員が多い都道府県を調べよう 2
+step3　お昼時の5品以上の注文を調べよう
+step4　高額注文によく含まれるメニューを調べよう
+final　安くてたくさん
+
+新・SQL入門編06ドリル
+<カテゴリを開発しよう>
+step1　カテゴリを追加しよう
+step2　メニューを追加しよう
+step3　注文履歴にデータを追加しよう
+step4　顧客データを追加しよう
+final  カテゴリを開発しよう
+
+<2件の注文されたメニューのデータを記録しよう>
+step1　カテゴリを2つ追加しよう
+step2　注文履歴にデータを3つ追加しよう
+step3　メニューを4つ追加しよう
+step4　顧客データを2つ追加しよう
+final  2件の注文されたメニューのデータを記録しよう
+
+
+
+
+
+
+
