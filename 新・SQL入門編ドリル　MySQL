@@ -516,10 +516,57 @@ WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレ
 よって、SELECT * FROM ordered WHERE datetime <> "2021-12-17 18:28:00"; と書く*/
 
 step2　メニュー番号を指定して取得しよう
+SELECT ordered_id, num FROM ordered_menu WHERE menu_id <> 12;
+/*問題文から、ordered_menu テーブルについて、
+ordered_id カラムと num カラムを取得する
+menu_id カラムの値が 12 でないレコードを絞り込む
+ことをすればよいとわかる
+WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレコードを絞り込むことができる
+よって、SELECT ordered_id, num FROM ordered_menu WHERE menu_id <> 12; と書く*/
+
 step3　注文数を指定して取得しよう
+SELECT * FROM ordered_menu WHERE num <> 1 ORDER BY num;
+/*問題文から、ordered_menu テーブルについて、
+num カラムの値が 1 でないレコードを絞り込む
+num カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE num <> 1 ORDER BY num; と書く*/
+
 step4　カテゴリ番号を指定して取得しよう
+SELECT category_id, name, price FROM menu WHERE category_id <> 3 ORDER BY name;
+/*問題文から、menu テーブルについて、
+category_id カラムと name カラム、price カラムを取得する
+category_id カラムの値が 3 でないレコードを絞り込む
+name カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレコードを絞り込むことができる
+よって、SELECT category_id, name, price FROM menu WHERE category_id <> 3 ORDER BY name; と書く*/
+
 step5　居住地を指定して取得しよう
+SELECT customer_id, name, name_yomi, residence FROM customer WHERE residence <> "東京都" ORDER BY name_yomi LIMIT 30;
+/*問題文から、customer テーブルについて、
+customer_id カラムと name カラム、name_yomi カラム、residence カラムを取得する
+residence カラムの値が 東京都 でないレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+上位 30 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレコードを絞り込むことができる
+よって、SELECT customer_id, name, name_yomi, residence FROM customer WHERE residence <> "東京都" ORDER BY name_yomi LIMIT 30; と書く*/
+
 final　入会日を指定して取得しよう
+SELECT * FROM customer WHERE join_date <> "2021-05-13" ORDER BY name_yomi LIMIT 30;
+/*問題文は、
+「2021-05-13 に入会していない会員」=「join_date カラムの値が 2021-05-13 でない会員」
+「名前の辞書順」=「name_yomi カラムの昇順」
+と読み替えることができる
+つまり、menu テーブルについて、
+join_date カラムの値が 2021-05-13 でないレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+上位 30 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 <> 値 で、カラム名 カラムの値が 値 でないレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE join_date <> "2021-05-13" ORDER BY name_yomi LIMIT 30; と書く*/
 
 <注文時刻を指定して取得しよう>
 step1　日時を指定して取得しよう
