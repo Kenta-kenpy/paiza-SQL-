@@ -576,6 +576,11 @@ WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さ�
 よって、SELECT * FROM ordered WHERE datetime < "2021-12-17 11:59:00"; と書く*/
 
 step2　日時を指定して取得しよう(Part2)
+SELECT * FROM ordered WHERE datetime <= "2021-12-17 11:59:00";
+/*問題文から、ordered テーブルの datetime カラムの値が 2021-12-17 11:59:00 以下のレコードを取得すればよいとわかる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime <= "2021-12-17 11:59:00"; と書く*/
+
 step3　小計を指定して取得しよう
 step4　注文数を指定して取得しよう
 step5　合計金額を指定して取得しよう
