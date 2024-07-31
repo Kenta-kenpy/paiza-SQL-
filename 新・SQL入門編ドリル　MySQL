@@ -582,6 +582,14 @@ WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレ
 よって、SELECT * FROM ordered WHERE datetime <= "2021-12-17 11:59:00"; と書く*/
 
 step3　小計を指定して取得しよう
+SELECT menu_id, sum FROM ordered_menu WHERE sum < 500;
+/*問題文から、ordered_menu テーブルについて、
+menu_id カラムと sum カラムを取得する
+sum カラムの値が 500 より小さいレコードを絞り込む
+ことをすればよいとわかる
+WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さいレコードを絞り込むことができる
+よって、SELECT menu_id, sum FROM ordered_menu WHERE sum < 500; と書く*/
+
 step4　注文数を指定して取得しよう
 step5　合計金額を指定して取得しよう
 step6　メニュー名を指定して取得しよう
