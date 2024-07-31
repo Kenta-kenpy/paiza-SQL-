@@ -591,10 +591,66 @@ WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さ�
 よって、SELECT menu_id, sum FROM ordered_menu WHERE sum < 500; と書く*/
 
 step4　注文数を指定して取得しよう
+SELECT ordered_id, num, sum FROM ordered_menu WHERE num <= 3 ORDER BY sum;
+/*問題文から、ordered_menu テーブルについて、
+ordered_id カラムと num カラム、sum カラムを取得する
+num カラムの値が 3 以下のレコードを絞り込む
+sum カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+よって、SELECT ordered_id, num, sum FROM ordered_menu WHERE num <= 3 ORDER BY sum; と書く*/
+
 step5　合計金額を指定して取得しよう
+SELECT * FROM ordered WHERE bill <= 750 ORDER BY datetime LIMIT 10;
+/*問題文から、ordered テーブルについて、
+bill カラムの値が 750 以下のレコードを絞り込む
+datetime カラムの昇順に並べ替える
+上位 10 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE bill <= 750 ORDER BY datetime LIMIT 10; と書く*/
+
 step6　メニュー名を指定して取得しよう
+SELECT name, price FROM menu WHERE name < "タ" ORDER BY price DESC LIMIT 10;
+/*問題文から、menu テーブルについて、
+name カラムと price カラムを取得する
+name カラムの値が タ より小さいレコードを絞り込む
+price カラムの降順に並べ替える
+上位 10 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さいレコードを絞り込むことができる
+よって、SELECT name, price FROM menu WHERE name < "タ" ORDER BY price DESC LIMIT 10; と書く*/
+
 step7  入会日を指定して取得しよう
+SELECT name, name_yomi, join_date FROM customer WHERE join_date < "2021-12-17" ORDER BY join_date, name_yomi LIMIT 25;
+/*問題文から、customer テーブルについて、
+name カラムと name_yomi カラム、join_date カラムを取得する
+join_date カラムの値が 2021-12-17 より小さいレコードを絞り込む
+並びを、
+join_date カラムの昇順
+join_date カラムの値が同じとき、name_yomi カラムの昇順
+に並べ替える
+上位 25 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さいレコードを絞り込むことができる
+よって、SELECT name, name_yomi, join_date FROM customer WHERE join_date < "2021-12-17" ORDER BY join_date, name_yomi LIMIT 25; と書く*/
+
 final　注文時刻を指定して取得しよう
+SELECT * FROM ordered WHERE datetime <= "2021-12-17 12:05:00" ORDER BY datetime DESC LIMIT 10;
+/*問題文から
+「日時が 2021-12-17 12:05:00 以前の注文履歴」
+=「datetime カラムの値が 2021-12-17 12:05:00 以下のレコード」
+「日時が 2021-12-17 12:05:00 以前の注文履歴のなかで、2021-12-17 12:05:00 から最も近い 10 件」
+=「上の条件で絞り込んで、datetime カラムの降順に並べ替えた上位 10 件」
+と考えることができる（補足）
+つまり、ordered テーブルについて、
+datetime カラムの値が 2021-12-17 12:05:00 以下のレコードを絞り込む
+datetime カラムの降順に並べ替える
+上位 10 件を取得する
+ことをすればよいとわかる
+
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime >= "2021-12-17 12:05:00" ORDER BY datetime LIMIT 10; と書く*/
 
 <合計金額が813円に近い注文履歴を取得しよう>
 step1　注文数を指定して取得しよう
