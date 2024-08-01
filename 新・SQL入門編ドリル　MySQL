@@ -638,35 +638,121 @@ WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さ�
 final　注文時刻を指定して取得しよう
 SELECT * FROM ordered WHERE datetime <= "2021-12-17 12:05:00" ORDER BY datetime DESC LIMIT 10;
 /*問題文から
-「日時が 2021-12-17 12:05:00 以前の注文履歴」
-=「datetime カラムの値が 2021-12-17 12:05:00 以下のレコード」
-「日時が 2021-12-17 12:05:00 以前の注文履歴のなかで、2021-12-17 12:05:00 から最も近い 10 件」
-=「上の条件で絞り込んで、datetime カラムの降順に並べ替えた上位 10 件」
-と考えることができる（補足）
+「日時が 2021-12-17 12:05:00 以前の注文履歴」=「datetime カラムの値が 2021-12-17 12:05:00 以下のレコード」
+「日時が 2021-12-17 12:05:00 以前の注文履歴のなかで、2021-12-17 12:05:00 から最も近い 10 件」=「上の条件で絞り込んで、datetime カラムの降順に並べ替えた上位 10 件」と考えることができる（補足）
 つまり、ordered テーブルについて、
 datetime カラムの値が 2021-12-17 12:05:00 以下のレコードを絞り込む
 datetime カラムの降順に並べ替える
 上位 10 件を取得する
 ことをすればよいとわかる
-
 WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
 よって、SELECT * FROM ordered WHERE datetime >= "2021-12-17 12:05:00" ORDER BY datetime LIMIT 10; と書く*/
 
 <合計金額が813円に近い注文履歴を取得しよう>
 step1　注文数を指定して取得しよう
+SELECT * FROM ordered_menu WHERE num > 3;
+/*問題文から、ordered_menu テーブル の num カラムの値が 3 より大きいレコードを取得すればよいとわかる
+WHERE カラム名 > 値 で、カラム名 カラムの値が 値 より大きいレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE num > 3; と書く*/
+
 step2　注文数を指定して取得しよう(Part2)
+SELECT * FROM ordered_menu WHERE num >= 3;
+/*問題文から、ordered_menu テーブル の num カラムの値が 3 以上のレコードを取得すればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE num >= 3; と書く*/
+
 step3　小計を指定して取得しよう
+SELECT menu_id, sum FROM ordered_menu WHERE sum >= 1200 ORDER BY sum DESC;
+/*問題文から、ordered_menu テーブルについて、
+menu_id カラムと sum カラムを取得する
+sum カラムの値が 1200 以上のレコードを絞り込む
+sum カラムの降順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+よって、SELECT menu_id, sum FROM ordered_menu WHERE sum >= 1200 ORDER BY sum DESC; と書く*/
+
 step4　注文数を指定して取得しよう
+SELECT * FROM customer WHERE join_date > "2021-12-31" ORDER BY join_date, name_yomi;
+/*問題文から、customer テーブルについて、
+join_date カラムの値が 2021-12-31 より大きいレコードを絞り込む
+並びを、
+join_date カラムの昇順
+join_date カラムの値が同じとき、name_yomi カラムの昇順
+に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 > 値 で、カラム名 カラムの値が 値 より大きいレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE join_date > "2021-12-31" ORDER BY join_date, name_yomi; と書く*/
+
 step5　合計金額を指定して取得しよう
+SELECT * FROM ordered WHERE bill >= 1750 ORDER BY datetime LIMIT 3;
+/*問題文から、ordered テーブルについて、
+bill カラムの値が 1750 以上のレコードを絞り込む
+datetime カラムの昇順に並べ替える
+上位 3 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE bill >= 1750 ORDER BY datetime LIMIT 3; と書く*/
+
 step6　メニュー名を指定して取得しよう
+SELECT name, price FROM menu WHERE name >= "ハ" ORDER BY price DESC LIMIT 10;
+/*問題文から、menu テーブルについて、
+name カラムと price カラムを取得する
+name カラムの値が ハ 以上のレコードを絞り込む
+price カラムの降順に並べ替える
+上位 10 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+よって、SELECT name, price FROM menu WHERE name >= "ハ" ORDER BY price DESC LIMIT 10; と書く*/
+
 step7  日時を指定して取得しよう
+SELECT * FROM ordered WHERE datetime >= "2021-12-17 17:00:00" ORDER BY bill DESC, datetime, ordered_id LIMIT 30;
+/*問題文から、ordered テーブルについて、
+name カラムの値が 2021-12-17 17:00:00 以上のレコードを絞り込む
+並びを、
+bill カラムの降順
+bill カラムの値が同じとき、datetime カラムの昇順
+datetime カラムの値も同じとき、ordered_id カラムの昇順
+に並べ替える
+上位 30 件を取得する
+ことをすればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime >= "2021-12-17 17:00:00" ORDER BY bill DESC, datetime, ordered_id LIMIT 30; と書く*/
+
 final　合計金額が813円に近い注文履歴を取得しよう
+SELECT ordered_id FROM ordered WHERE bill >= 813 ORDER BY bill LIMIT 1;
+/*「注文した合計金額が 813 円に最も近い人 1 人」の候補は次の方法で求めることができる
+【 合計金額 ≦ 813 】
+合計金額が 813 円以下のレコードを絞り込む
+合計金額の降順に並べ替える
+上位 1 件を取得する
+【 合計金額 ≧ 813 】
+合計金額が 813 円以上のレコードを絞り込む
+合計金額の昇順に並べ替える
+上位 1 件を取得する
+今回、「813 円未満の注文はキャンペーンの対象外」なため、下段の方法を用いて取得すればよいと考えることができる
+つまり、ordered テーブルについて。
+ordered_id カラムを取得する
+bill カラムの値が 813 以上のレコードを絞り込む
+bill カラムの昇順に並べ替える
+上位 1 件を取得する
+ことをすればよいとわかる
+
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+よって、SELECT ordered_id FROM ordered WHERE bill >= 813 ORDER BY bill LIMIT 1; と書く*/
 
 <居住地を指定して取得しよう>
 final  居住地を指定して取得しよう
+SELECT * FROM customer WHERE residence IS NULL;
+/*問題文から、customer テーブルの num カラムの値が NULL であるレコードを取得すればよいとわかる
+WHERE カラム名 IS NULL で、カラム名 カラムの値が NULL であるレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE residence IS NULL; と書く*/
 
 <居住地を指定して取得しよう>
 final　居住地を指定して取得しよう
+SELECT * FROM customer WHERE residence IS NOT NULL;
+/*問題文から、customer テーブルの num カラムの値が NULL でないレコードを取得すればよいとわかる
+WHERE カラム名 IS NOT NULL で、カラム名 カラムの値が NULL でないレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE residence IS NOT NULL; と書く*/
 
 <12時台の注文履歴を取得しよう>
 step1　合計金額の範囲を指定して取得しよう
