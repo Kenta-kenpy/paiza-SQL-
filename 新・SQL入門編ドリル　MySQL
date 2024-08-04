@@ -756,12 +756,81 @@ WHERE カラム名 IS NOT NULL で、カラム名 カラムの値が NULL でな
 
 <12時台の注文履歴を取得しよう>
 step1　合計金額の範囲を指定して取得しよう
+SELECT * FROM ordered WHERE bill BETWEEN 100 AND 499;
+/*問題文から、ordered テーブルの bill カラムの値が 100 と 499 の間に含まれるレコードを取得すればよいとわかる
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE bill BETWEEN 100 AND 499; と書く*/
+
 step2　入会日の範囲を指定して取得しよう
+SELECT name, name_yomi, join_date FROM customer WHERE join_date BETWEEN "2021-08-13" AND "2021-09-13" ORDER BY name_yomi;
+/*問題文から、customer テーブルについて、
+name カラムと name_yomi カラム、join_date カラムを取得する
+join_date カラムの値が 2021-08-13 と 2021-09-13 の間に含まれるレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT name, name_yomi, join_date FROM customer WHERE join_date BETWEEN "2021-08-13" AND "2021-09-13" ORDER BY name_yomi; と書く*/
+
 step3　メニュー名の範囲を指定して取得しよう
+SELECT * FROM menu WHERE name BETWEEN "エ" AND "ス" ORDER BY name LIMIT 5;
+/*問題文から、menu テーブルについて、
+name カラムの値が タ と マ の間に含まれるレコードを絞り込む
+name カラムの昇順に並べ替える
+上位 5 件を取得する
+ことをすればよいとわかる
+
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE name BETWEEN "エ" AND "ス" ORDER BY name LIMIT 5; と書く*/
+
 step4　小計を範囲指定して取得しよう
+SELECT * FROM ordered_menu WHERE sum BETWEEN 500 AND 700 ORDER BY sum DESC, num;
+/*問題文から、ordered_menu テーブルについて、
+sum カラムの値が 500 と 700 の間に含まれるレコードを絞り込む
+並びを、
+sum カラムの降順
+sum カラムの値が同じとき、num カラムの昇順
+に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE sum BETWEEN 500 AND 700 ORDER BY sum DESC, num; と書く*/
+
 step5　価格を範囲指定して取得しよう
+SELECT category_id, name, price FROM menu WHERE price BETWEEN 100 AND 300 ORDER BY category_id, price;
+/*問題文から、menu テーブルについて、
+category_id カラムと name カラム、price カラムを取得する
+price カラムの値が 100 と 300 の間に含まれるレコードを絞り込む
+並びを、
+category_id カラムの昇順
+category_id カラムの値が同じとき、price カラムの昇順
+に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT category_id, name, price FROM menu WHERE price BETWEEN 100 AND 300 ORDER BY category_id, price; と書く*/
+
 step6　会員名の範囲を指定して取得しよう
+SELECT name, name_yomi, join_date FROM customer WHERE name_yomi BETWEEN "ヌ" AND "メ" ORDER BY join_date, name_yomi LIMIT 20;
+/*問題文から、customer テーブルについて、
+name カラムと name_yomi カラム、join_date カラムを取得する
+name_yomi カラムの値が ヌ と メ の間に含まれるレコードを絞り込む
+並びを、
+join_date カラムの昇順
+join_date カラムの値が同じとき、name_yomi カラムの昇順
+に並べ替える
+上位 20 件を取得する
+ことをすればよいとわかる
+
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT name, name_yomi, join_date FROM customer WHERE name_yomi BETWEEN "ヌ" AND "メ" ORDER BY join_date, name_yomi LIMIT 20; と書く*/
+
 final　12時台の注文履歴を取得しよう
+SELECT * FROM ordered WHERE datetime BETWEEN "2021-12-17 12:00:00" AND ADDTIME("2021-12-17 12:00:00", "00:59:59");
+/*問題文の「12 時台の注文履歴」は「12:00:00 と 12:59:59 の間に含まれる注文履歴」と読み替えることができる
+つまり、ordered テーブルの datetime カラムの値が 2021-12-17 12:00:00 と 2021-12-17 12:59:59 の間に含まれるレコードを絞り込めばよいとわかる
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime BETWEEN "2021-12-17 12:00:00" AND "2021-12-17 12:59:59"; と書く*/
 
 <午前中の1000円以上の注文履歴を取得しよう>
 step1　合計金額を指定して取得しよう
@@ -786,7 +855,7 @@ step3  複合的な条件を指定して取得しよう(Part3)
 step4  複合的な条件を指定して取得しよう(Part4)
 final  複合的な条件を指定して取得しよう
 
-<謝罪咲を調べよう>
+<謝罪先を調べよう>
 step1　カテゴリ番号を指定して取得しよう
 step2　日時を指定して取得しよう
 step3　価格を指定して取得しよう
