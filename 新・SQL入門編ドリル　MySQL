@@ -829,16 +829,111 @@ final　12時台の注文履歴を取得しよう
 SELECT * FROM ordered WHERE datetime BETWEEN "2021-12-17 12:00:00" AND ADDTIME("2021-12-17 12:00:00", "00:59:59");
 /*問題文の「12 時台の注文履歴」は「12:00:00 と 12:59:59 の間に含まれる注文履歴」と読み替えることができる
 つまり、ordered テーブルの datetime カラムの値が 2021-12-17 12:00:00 と 2021-12-17 12:59:59 の間に含まれるレコードを絞り込めばよいとわかる
+
 WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
 よって、SELECT * FROM ordered WHERE datetime BETWEEN "2021-12-17 12:00:00" AND "2021-12-17 12:59:59"; と書く*/
 
 <午前中の1000円以上の注文履歴を取得しよう>
 step1　合計金額を指定して取得しよう
+SELECT * FROM ordered WHERE bill >= 100 AND bill <= 499;
+/*問題文から、ordered テーブルの bill カラムの値が 100 円以上 499 円以下のレコードを取得すればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE bill >= 100 AND bill <= 499; と書く*/
+
 step2　日時を指定して取得しよう
+SELECT * FROM ordered WHERE datetime >= "2021-12-17 13:00:00" AND datetime <= "2021-12-17 17:00:00" ORDER BY ordered_id;
+/*問題文から、ordered テーブルについて、
+datetime カラムの値が 2021-12-17 13:00:00 以上 2021-12-17 17:00:00 円以下のレコードを絞り込む
+ordered_id カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM ordered WHERE datetime >= "2021-12-17 13:00:00" AND datetime <= "2021-12-17 17:00:00" ORDER BY ordered_id; と書く*/
+
 step3　カテゴリ番号と価格を指定して取得しよう
+SELECT name, price FROM menu WHERE category_id = 1 AND price < 300 ORDER BY price;
+/*問題文から、menu テーブルについて、
+name カラムと price カラムを取得する
+次の条件をすべて満たすレコードを絞り込む
+category_id の値が 1 である
+price カラムの値が 300 より小さい
+price カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 のレコードを絞り込むことができる
+WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さいレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT name, price FROM menu WHERE category_id = 1 AND price < 300 ORDER BY price; と書く*/
+
 step4　複合的な条件を指定して取得しよう
+SELECT join_date, name, name_yomi, residence FROM customer WHERE join_date <= "2021-05-13" AND name_yomi >= "ハ" AND residence IS NOT NULL ORDER BY join_date;
+/*問題文から、customer テーブルについて、
+join_date, name, name_yomi, residence カラムを取得する
+次の条件をすべて満たすレコードを絞り込む
+join_date カラムの値が 2021-05-13 以下である
+name_yomi カラムの値が ハ 以上である
+residence カラムの値が NULL でない
+join_date カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 IS NOT NULL で、カラム名 カラムの値が NULL でないレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 AND ... AND 条件n で、条件1 かつ 条件2 かつ ... かつ 条件n の条件を満たすレコードを絞り込むことができる
+よって、SELECT join_date, name, name_yomi, residence FROM customer WHERE join_date <= "2021-05-13" AND name_yomi >= "ハ" AND residence IS NOT NULL ORDER BY join_date; と書く*/
+
 step5　複合的な条件を指定して取得しよう(Part2)
+SELECT * FROM ordered_menu WHERE ordered_id >= 212 AND menu_id BETWEEN 10 AND 13 AND num >= 2 ORDER BY menu_id, num DESC;
+/*問題文で指定されている条件は、提示されている情報から次のように読み替えることができる
+注文時刻が 2021-12-17 17:00:00 以降: ordered_id カラムの値が 212 以上
+注文時刻が 2021-12-17 17:00:00 である注文の通し番号（ordered_id カラムの値）が 212 である
+注文したメニューが フライドポテト 類: menu_id カラムの値が 10 以上 13 以下
+フライドポテト類のメニュー番号は次のようになっている
+フライドポテトS: 10
+フライドポテトM: 11
+フライドポテトL: 12
+バケツポテト: 13
+注文数が 2 個以上である: num カラムの値が 2 以上
+つまり、ordered_menu テーブルについて、
+次の条件をすべて満たすレコードを絞り込む
+ordered_id カラムの値が 212 以上である
+menu_id カラムの値が
+10 以上 13 以下である
+もしくは、10 と 13 の間に含まれる
+num カラムの値が 2 以上である
+並びを次のように並べ替える
+menu_id カラムの昇順
+menu_id カラムの値が同じとき、num カラムの降順
+ことをすればよいとわかる
+
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 AND ... AND 条件n で、条件1 かつ 条件2 かつ ... かつ 条件n の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE ordered_id >= 212 AND menu_id BETWEEN 10 AND 13 AND num >= 2 ORDER BY menu_id, num DESC; と書く*/
+
 final　午前中の1000円以上の注文履歴を取得しよう
+SELECT ordered_id FROM ordered WHERE datetime < "2021-12-17 12:00:00" AND bill >= 1000 ORDER BY bill DESC, datetime;
+/*問題文で指定されている条件は、次のように読み替えることができる
+「2021-12-17 の午前中の注文」=「datetime カラムの値が 2021-12-17 12:00:00 より小さい」
+「注文の合計金額が 1000 円以上の注文」=「bill カラムの値が 1000 以上」
+また、並べ替えの条件についても、次のように読み替えることができる
+「合計金額が高い順」=「bill カラムの降順」
+「注文日時が早い順」=「datetime カラムの昇順」
+つまり、ordered について、
+次の条件をすべて満たすレコードを絞り込む
+datetime カラムの値が 2021-12-17 12:00:00 より小さい
+bill カラムの値が 1000 以上である
+並びを次のように並べ替える
+bill カラムの降順
+bill カラムの値が同じとき、datetime カラムの昇順
+ことをすればよいとわかる
+
+WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さいレコードを絞り込むことができる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT ordered_id FROM ordered WHERE datetime < "2021-12-17 12:00:00" AND bill >= 1000 ORDER BY bill DESC, datetime; と書く*/
 
 <2つのバーガーの注文内容を取得しよう>
 step1　合計金額を指定して取得しよう
