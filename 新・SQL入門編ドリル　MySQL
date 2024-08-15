@@ -968,6 +968,19 @@ WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たす�
 よって、SELECT * FROM ordered WHERE datetime BETWEEN "2021-12-17 11:00:00" AND "2021-12-17 13:59:59" OR datetime BETWEEN "2021-12-17 17:00:00" AND "2021-12-17 20:59:59" ORDER BY datetime; と書く*/
 
 step4　複合的な条件を指定して取得しよう
+SELECT * FROM ordered_menu WHERE menu_id = 13 OR num >= 4 OR sum >= 1000 ORDER BY menu_id;
+/*問題文から、ordered_menu テーブルについて、
+次の 3 の条件を、少なくとも 1 つ満たすレコードを絞り込む
+menu_id カラムの値が 13 である
+num カラムの値が 4 以上である
+sum カラムの値が 1000 以上である
+menu_id カラムの昇順に並べ替える
+
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 OR ... OR 条件n で、条件1 または 条件2 または ... または 条件n の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE menu_id = 13 OR num >= 4 OR sum >= 1000 ORDER BY menu_id; と書く*/
+
 step5　複合的な条件を指定して取得しよう(Part2)
 final　2つのバーガーの注文内容を取得しよう
 
