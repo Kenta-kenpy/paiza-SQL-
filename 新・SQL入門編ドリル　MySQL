@@ -982,7 +982,34 @@ WHERE 条件1 OR 条件2 OR ... OR 条件n で、条件1 または 条件2 ま�
 よって、SELECT * FROM ordered_menu WHERE menu_id = 13 OR num >= 4 OR sum >= 1000 ORDER BY menu_id; と書く*/
 
 step5　複合的な条件を指定して取得しよう(Part2)
+SELECT name, name_yomi, join_date, residence FROM customer WHERE residence = "徳島県" OR residence = "香川県" OR residence = "愛媛県" OR residence = "高知県" OR residence IS NULL ORDER BY join_date, name_yomi;
+/*問題文から、customer テーブルについて、
+residence カラムの値が 徳島県 または 香川県 または 愛媛県 または 高知県 または NULL であるレコードを絞り込む
+並びを次のように並べ替える
+join_date カラムの昇順に並べ替える
+join_date カラムの値が同じとき、name_yomi カラムの昇順に並べ替える
+
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE カラム名 IS NULL で、カラム名 カラムの値が NULL のレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 OR ... OR 条件n で、条件1 または 条件2 または ... または 条件n の条件を満たすレコードを絞り込むことができる
+よって、SELECT name, name_yomi, join_date, residence FROM customer WHERE residence = "徳島県" OR residence = "香川県" OR residence = "愛媛県" OR residence = "高知県" OR residence IS NULL ORDER BY join_date, name_yomi; と書く*/
+
 final　2つのバーガーの注文内容を取得しよう
+SELECT * FROM ordered_menu WHERE menu_id = 7 OR menu_id = 9 ORDER BY num DESC, sum DESC;
+/*問題文の条件は、提示されている情報から次のように読み替えることができる
+ベーコンチーズバーガー と ベーコンエッグバーガー の注文内容: menu_id カラムの値が 7 または 9 のレコード
+ベーコンチーズバーガー のメニュー番号: 7
+ベーコンエッグバーガー のメニュー番号: 9
+つまり、ordered_menu テーブルについて、
+menu_id カラムの値が 7 または、9 であるレコードを絞り込む
+並びを次のように並べ替える
+num カラムの値の降順
+num カラムの値が同じとき、sum カラムの降順
+ことをすればよいとわかる
+
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE menu_id = 7 OR menu_id = 9 ORDER BY num DESC, sum DESC; と書く*/
 
 <条件を満たす注文番号を取得しよう>
 step1　複合的な条件を指定して取得しよう
