@@ -1060,7 +1060,59 @@ WHERE (条件1 OR 条件2) AND 条件3 で、条件1 または 条件2 を満た
 よって、SELECT * FROM ordered WHERE (datetime BETWEEN "2021-12-17 12:00:00" AND "2021-12-17 12:59:59" OR datetime BETWEEN "2021-12-17 19:00:00" AND "2021-12-17 19:59:59") AND (bill <= 300 OR bill >= 1000) ORDER BY bill; と書く。*/
 
 step4  複合的な条件を指定して取得しよう(Part4)
+SELECT * FROM customer WHERE join_date <= "2021-08-24" AND (residence = "群馬県" OR residence = "栃木県" OR residence = "茨城県" OR residence = "埼玉県" OR residence IS NULL) OR join_date > "2021-08-24" AND (residence = "東京都" OR residence = "千葉県" OR residence = "神奈川県") ORDER BY join_date;
+/*問題文から、customer テーブルについて、
+A かつ (B または C) または D かつ E を満たすレコードを絞り込む
+A: 入会日が 2021-08-24 以前である
+B: 居住地が 群馬県、栃木県、茨城県、埼玉県 のいずれかである
+C: 居住地が NULL である
+D: 入会日が 2021-08-24 より後である
+E: 居住地が 東京都、千葉県、神奈川県 のいずれかである
+※ B, E の条件は、条件内に「または」を含むことに注意
+join_date カラムの昇順に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE カラム名 > 値 で、カラム名 カラムの値が 値 より大きいレコードを絞り込むことができる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE カラム名 IS NULL で、カラム名 カラムの値が NULL のレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE (条件1 OR 条件2) AND 条件3 で、条件1 または 条件2 を満たし、かつ 条件3 を満たすレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT * FROM customer WHERE join_date <= "2021-08-24" AND (residence = "群馬県" OR residence = "栃木県" OR residence = "茨城県" OR residence = "埼玉県" OR residence IS NULL) OR join_date > "2021-08-24" AND (residence = "東京都" OR residence = "千葉県" OR residence = "神奈川県") ORDER BY join_date; と書く*/
+
 final  複合的な条件を指定して取得しよう
+SELECT ordered_id FROM ordered_menu WHERE (ordered_id <= 42 OR ordered_id >= 76) AND (menu_id = 12 OR menu_id = 11 AND num >= 2) ORDER BY ordered_id;
+/*問題文の条件は、提示されている情報から次のように読み替えることができる
+注文時刻が 2021-12-17 12:00:00 から 2021-12-17 12:59:59 の間でない: ordered_id カラムの値が 42 以下、または 76 以上である（= 条件 A）
+SELECT ordered_id, datetime FROM ordered WHERE datetime < "2021-12-17 12:00:00" ORDER BY datetime DESC LIMIT 1;
+ordered_id	datetime
+42	2021-12-17 11:59:00
+注文時刻が 2021-12-17 12:00:00 直前の注文番号は 42
+SELECT ordered_id, datetime FROM ordered WHERE datetime > "2021-12-17 12:59:59" ORDER BY datetime LIMIT 1;
+ordered_id	datetime
+76	2021-12-17 13:00:00
+注文時刻が 2021-12-17 12:59:59 直後の注文番号は 76
+注文番号は連番
+フライドポテトL を注文する: menu_id カラムの値が 12 である（= 条件 B）
+フライドポテトM を 2 個以上注文する: menu_id カラムの値が 11 であり、かつ num カラムの値が 2 以上である（= 条件 C）
+条件 B, 条件 C は少なくとも 1 つ満たされていればよい
+以上のことから、問題文で求められている条件は A かつ (B または C) と言い換えられる
+つまり、ordered_menu テーブルについて、
+A かつ (B または C) を満たすレコードを絞り込む
+A: ordered_id カラムの値が 42 以下、または 76 以上である
+B: menu_id カラムの値が 12 である
+C: menu_id カラムの値が 11 であり、かつ num カラムの値が 2 以上である
+※ A, C の条件は、条件内に「または」を含むことに注意
+ordered_id カラムの昇順に並べ替える
+
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE (条件1 OR 条件2) AND 条件3 で、条件1 または 条件2 を満たし、かつ 条件3 を満たすレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT ordered_id FROM ordered_menu WHERE (ordered_id <= 42 OR ordered_id >= 76) AND (menu_id = 12 OR menu_id = 11 AND num >= 2) ORDER BY ordered_id; と書く*/
 
 <謝罪先を調べよう>
 step1　カテゴリ番号を指定して取得しよう
