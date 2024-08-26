@@ -1116,10 +1116,84 @@ WHERE (条件1 OR 条件2) AND 条件3 で、条件1 または 条件2 を満た
 
 <謝罪先を調べよう>
 step1　カテゴリ番号を指定して取得しよう
+SELECT * FROM menu WHERE NOT category_id = 3;
+/*問題文から、menu テーブルの category_id カラムの値が 3 でないレコードを取得すればよいとわかる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE NOT category_id = 3; と書く*/
+
 step2　日時を指定して取得しよう
+SELECT * FROM ordered WHERE NOT (datetime >= "2021-12-17 14:00:00" AND datetime <= "2021-12-17 16:59:59") ORDER BY bill DESC LIMIT 10;
+/*問題文から、ordered テーブルについて、
+datetime カラムの値が 2021-12-17 14:00:00 から 2021-12-17 16:59:59 の間に含まれ ない レコードを絞り込む
+bill カラムの降順に並べ替える
+上位 10 件を取得する
+
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+WHERE NOT (条件1 AND 条件2) で、条件1 かつ 条件2 を満たさないレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT * FROM ordered WHERE NOT (datetime >= "2021-12-17 14:00:00" AND datetime <= "2021-12-17 16:59:59") ORDER BY bill DESC LIMIT 10; と書く*/
+
 step3　価格を指定して取得しよう
+SELECT category_id, name, price FROM menu WHERE NOT (price <= 200 OR price >= 350) ORDER BY category_id, name;
+/*問題文から、menu テーブルについて、
+category_id カラム、name カラム、price カラムを取得する
+price カラムの値が「200 以下、または 350 以上」で ない レコードを絞り込む
+並びを次のように並べ替える
+category_id カラムの昇順に並べ替える
+category_id カラムの値が同じとき、name カラムの昇順に並べ替える
+
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+WHERE NOT (条件1 OR 条件2) で、条件1 または 条件2 を満たさないレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT category_id, name, price FROM menu WHERE NOT (price <= 200 OR price >= 350) ORDER BY category_id, name; と書く*/
+
 step4　複合的な条件を指定して取得しよう
+SELECT * FROM ordered_menu WHERE NOT (ordered_id BETWEEN 99 AND 211 OR num < 3 OR sum <= 500) ORDER BY menu_id, num DESC, ordered_id;
+/*問題文から、ordered_menu テーブルについて、
+次の条件を 1 つも満たさない、つまり「A または B または C の否定」を満たすレコードを絞り込む（参考）
+A: ordered_id カラムの値が 99 から 211 の間である
+B: num カラムの値が 3 未満である
+C: sum カラムの値が 500 以下である
+並びを次のように並べ替える
+menu_id カラムの値の昇順
+menu_id カラムの値が同じとき、num カラムの値の降順
+num カラムの値も同じとき、ordered_id カラムの昇順
+【 補足 】
+「条件 A, B, C を 1 つも満たさない」は、「A または B または C の否定」で表すことができる
+なぜか、
+「条件 A, B, C を 1 つも満たさない」=『「条件 A, B, C を少なくとも 1 つ満たす」の否定』
+「条件 A, B, C を少なくとも 1 つ満たす」=「条件 A または条件 B または条件 C を満たす」
+「条件 A または条件 B または条件 C を満たす」= A または B または C
+『「条件 A, B, C を少なくとも 1 つ満たす」の否定』=「A または B または C の否定」
+よって、「条件 A, B, C を 1 つも満たさない」=「A または B または C の否定」
+
+WHERE カラム名 >= 値 で、カラム名 カラムの値が 値 以上のレコードを絞り込むことができる
+WHERE カラム名 < 値 で、カラム名 カラムの値が 値 より小さいレコードを絞り込むことができる
+WHERE カラム名 <= 値 で、カラム名 カラムの値が 値 以下のレコードを絞り込むことができる
+WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名 カラムの値が 値1 と 値2 の間に含まれるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 OR ... OR 条件n: 条件1 または 条件2 または ... または 条件n の条件を満たすレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+WHERE NOT (条件1 OR 条件2) で、条件1 または 条件2 を満たさないレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT * FROM ordered_menu WHERE NOT (ordered_id BETWEEN 99 AND 211 OR num < 3 OR sum <= 500) ORDER BY menu_id, num DESC, ordered_id; と書く*/
+
 final　謝罪先を調べよう
+SELECT customer_id, name, name_yomi FROM customer WHERE NOT (residence = "青森県" OR residence = "岩手県" OR residence = "宮城県" OR residence = "秋田県" OR residence = "山形県" OR residence = "福島県") OR residence IS NULL;
+/*問題文から、customer テーブルについて、
+customer_id カラム、name カラム、name_yomi カラムを取得する
+residence カラムの値が 青森県、岩手県、宮城県、秋田県、山形県、福島県 のいずれでもないレコードを絞り込む
+つまり、residence カラムの値が『「青森県 である、または 岩手県 である、または 宮城県 である、または 秋田県 である、または 山形県 である、または 福島県 である」の否定』を満たすレコードを絞り込む
+
+WHERE カラム名 = 値: カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 OR ... OR 条件n: 条件1 または 条件2 または ... または 条件n の条件を満たすレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+WHERE NOT (条件1 OR 条件2) で、条件1 または 条件2 を満たさないレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT customer_id, name, name_yomi FROM customer WHERE NOT (residence = "青森県" OR residence = "岩手県" OR residence = "宮城県" OR residence = "秋田県" OR residence = "山形県" OR residence = "福島県"); と書く*/
 
 <ゲームの勝敗を調べよう>
 step1　カテゴリ番号を指定して取得しよう
