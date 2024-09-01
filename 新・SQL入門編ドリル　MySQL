@@ -1197,8 +1197,42 @@ WHERE NOT (条件1 OR 条件2) で、条件1 または 条件2 を満たさな�
 
 <ゲームの勝敗を調べよう>
 step1　カテゴリ番号を指定して取得しよう
+SELECT * FROM menu WHERE category_id IN (2, 4) ORDER BY price DESC;
+/*問題文から、menu テーブルについて、
+category_id カラムの値が 2, 4 のいずれかであるレコードを絞り込む
+price カラムの降順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 IN (値1, 値2) で、カラム名 カラムの値が 値1, 値2 のいずれかであるレコードを絞り込むことができる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE category_id IN (2, 4) ORDER BY price DESC; と書く*/
+
 step2　居住地を指定して取得しよう
+SELECT name, name_yomi, residence FROM customer WHERE residence IN ("東京都", "大阪府", "愛知県") ORDER BY residence;
+/*問題文から、customer テーブルについて、
+name カラム、name_yomi カラム、residence カラムを取得する
+residence カラムの値が 東京都、大阪府、愛知県 のいずれかであるレコードを絞り込む
+residence カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 IN (値1, 値2, ..., 値n) で、カラム名 カラムの値が 値1, 値2, ..., 値n のいずれかであるレコードを絞り込むことができる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT name, name_yomi, residence FROM customer WHERE residence IN ("東京都", "大阪府", "愛知県") ORDER BY residence; と書く*/
+
 step3　複合的な条件を指定して取得しよう
+SELECT * FROM ordered_menu WHERE num IN (2, 3, 4) AND sum IN (550, 600, 650, 700, 750) ORDER BY num DESC, sum DESC;
+/*問題文から、ordered_menu テーブルについて、
+条件 A かつ B を満たすレコードを絞り込む
+A: num カラムの値が、2, 3, 4 のいずれかである
+B: sum カラムの値が、550, 600, 650, 700, 750 のいずれかである
+並びを次のように並べ替える
+num カラムの降順に並べ替える
+num カラムの値が同じとき、sum カラムの降順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 IN (値1, 値2, ..., 値n) で、カラム名 カラムの値が 値1, 値2, ..., 値n のいずれかであるレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE num IN (2, 3, 4) AND sum IN (550, 600, 650, 700, 750) ORDER BY num DESC, sum DESC; と書く*/
+
 step4　複合的な条件を指定して取得しよう(Part2)
 step5　居住地を指定して取得しよう(Part2)
 final  ゲームの勝敗を調べよう
