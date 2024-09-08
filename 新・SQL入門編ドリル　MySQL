@@ -1248,7 +1248,54 @@ WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たす�
 よって、SELECT * FROM menu WHERE category_id IN (1, 3) OR price IN (150, 200, 250) ORDER BY category_id, price DESC; と書く*/
 
 step5　居住地を指定して取得しよう(Part2)
+SELECT * FROM customer WHERE residence NOT IN ("群馬県", "栃木県", "茨城県") ORDER BY name_yomi;
+/*問題文から、customer テーブルについて、
+residence カラムの値が 群馬県、栃木県、茨城県 のいずれでもないレコードを絞り込む
+name_yomi カラムの値の昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 IN (値1, 値2, ..., 値n) で、カラム名 カラムの値が 値1, 値2, ..., 値n のいずれかであるレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE residence NOT IN ("群馬県", "栃木県", "茨城県") ORDER BY name_yomi; と書く
+
+<別解>
+（NOT IN 演算子を利用した解答例です。）
+WHERE カラム名 NOT IN (値1, 値2, ..., 値n) で、カラム名 カラムの値が 値1, 値2, ..., 値n のいずれでもないレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE residence NOT IN ("群馬県", "栃木県", "茨城県") ORDER BY name_yomi; で正解できる
+【 NOT カラム名 IN (値の集合) と カラム名 NOT IN (値の集合) のどちらを使うとよいか 】
+どちらも同じ意味で使うことができるので、どちらを使えばよいのか、について紹介します。
+まず結論ですが、NOT IN 演算子を使う方が好ましい場合が多いです。
+なぜかというと、NOT IN 演算子で書いた方がわかりやすいからです。
+NOT 演算子を用いた書き方は、IN 演算子の条件と組み合わせて、あくまで「書ける」という書き方です。
+対して、NOT IN 演算子を用いた書き方は、NOT IN 演算子本来の意味で書いた、自然な書き方です。
+そのため、NOT IN 演算子を使った方がわかりやすく、SQL 文を考えやすいことが多いので、NOT IN 演算子を用いるた方がよい場合が多いです。
+これから SQL 文を書くときの参考にしてみてください。
+（今回は IN 演算子をピックアップしている問題群のなかでの出題だったので、NOT IN 演算子を用いた書き方を別解というかたちで紹介しました。）*/
+
 final  ゲームの勝敗を調べよう
+SELECT * FROM ordered_menu WHERE menu_id IN (1, 11, 15, 25) ORDER BY sum DESC, ordered_id LIMIT 10;
+/*問題文は、次のように読み替えることができる
+「4 人が選んだ次のメニューについて」=「menu_id カラムの値が 1, 11, 15, 25 のいずれかであるレコードを絞り込む」
+4 人が選んだメニュー:
+A: フライドポテトM
+B: ホットティー
+C: ハンバーガー
+D: コーンサラダ
+それぞれのメニューの番号:
+SELECT id, name FROM menu WHERE name IN ("フライドポテトM", "ホットティー", "ハンバーガー", "コーンサラダ");
+id	name
+1	ハンバーガー
+11	フライドポテトM
+15	コーンサラダ
+25	ホットティー
+「小計の TOP10」=「sum カラムの降順に並べ替えて、上位 10 件を取得する」
+つまり、ordered_menu テーブルについて、
+menu_id カラムの値が 1, 11, 15, 25 のいずれかであるレコードを絞り込む
+sum カラムの降順に並べ替える
+上位 10 件を取得する
+ことをすればよいとわかる
+
+WHERE カラム名 IN (値1, 値2, ..., 値n) で、カラム名 カラムの値が 値1, 値2, ..., 値n のいずれかであるレコードを絞り込むことができる
+よって、SELECT * FROM ordered_menu WHERE menu_id IN (1, 11, 15, 25) ORDER BY sum DESC LIMIT 10; と書く*/
 
 <同僚を助けよう>
 step1　メニュー名を指定して取得しよう
