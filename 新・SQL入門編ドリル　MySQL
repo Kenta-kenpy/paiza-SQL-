@@ -1299,10 +1299,71 @@ WHERE カラム名 IN (値1, 値2, ..., 値n) で、カラム名 カラムの値
 
 <同僚を助けよう>
 step1　メニュー名を指定して取得しよう
+SELECT * FROM menu WHERE name LIKE "コー%";
+/*問題文から、menu テーブルの name カラムの値が コー から始まるレコードを取得すればよいとわかる
+WHERE カラム名 LIKE 値% で、カラム名 カラムの値が 値 で始まるレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE name LIKE "コー%"; と書く*/
+
 step2　漢字名を指定して取得しよう
+SELECT * FROM customer WHERE name LIKE "小%" ORDER BY customer_id;
+/*問題文から、customer テーブルについて、
+name カラムの値が 小 から始まるレコードを絞り込む
+customer_id カラムの昇順に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 LIKE 値% で、カラム名 カラムの値が 値 で始まるレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE name LIKE "小%" ORDER BY customer_id; と書く*/
+
 step3　会員名を指定して取得しよう
+SELECT customer_id, name, name_yomi FROM customer WHERE name_yomi LIKE "イシ%" OR name_yomi LIKE "オオ%" ORDER BY name_yomi;
+/*問題文から、customer テーブルについて、
+customer_id カラム、name カラム、name_yomi カラムを取得する
+name_yomi カラムの値が イシ または、オオ から始まるレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 LIKE 値% で、カラム名 カラムの値が 値 で始まるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT customer_id, name, name_yomi FROM customer WHERE name_yomi LIKE "イシ%" OR name_yomi LIKE "オオ%" ORDER BY name_yomi; と書く*/
+
 step4　居住地を指定して取得しよう
+SELECT * FROM customer WHERE residence LIKE "長%" OR residence LIKE "福%" OR residence LIKE "宮%" OR residence LIKE "山%" OR residence IS NULL ORDER BY residence, name_yomi;
+/*問題文から、customer テーブルについて、
+条件 A または B を満たすレコードを絞り込む
+A: residence カラムの値が 長、福、宮、山 のいずれかから始まる
+B: residence カラムの値が MULL である
+並びを次のように並べ替える
+residence カラムの昇順に並べ替える
+residence カラムの値が同じとき、name_yomi カラムの照準に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 LIKE 値% で、カラム名 カラムの値が 値 で始まるレコードを絞り込むことができる
+WHERE カラム名 IS NULL で、カラム名 カラムの値が NULL のレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE residence LIKE "長%" OR residence LIKE "福%" OR residence LIKE "宮%" OR residence LIKE "山%" OR residence IS NULL ORDER BY residence, name_yomi; と書く*/
+
 final　同僚を助けよう
+SELECT customer_id, name, name_yomi FROM customer WHERE name LIKE "真%" AND name_yomi LIKE "サ%";
+SELECT customer_id, name, name_yomi FROM customer WHERE name LIKE "真%" AND name_yomi LIKE "マ%";
+/*問題文で提示されている条件は、次のように読み替えることができる
+「会員のリストのなかで、名字が 真 から始まり、読みが サ から始まる会員」=「customer テーブルについて、name カラムの値が 真 から始まる、かつ name_yomi カラムの値が サ から始まる」
+「会員のリストのなかで、名字が 真 から始まり、読みが マ から始まる」=「customer テーブルについて、name カラムの値が 真 から始まる、かつ name_yomi カラムの値が マ から始まる」
+「会員の、通し番号、漢字名、およびそのフリガナ」=「customer_id カラム、name カラム、name_yomi カラムを取得する」
+つまり、次の 1. と 2. をおこなえばよいとわかる
+customer テーブルについて、次のことをする
+customer_id カラム、name カラム、name_yomi カラムを取得する
+条件 A1 かつ B1 を満たすレコードを絞り込む
+A1: name カラムの値が 真 から始まる
+B1: name_yomi カラムの値が サ から始まる
+customer テーブルについて、次のことをする
+customer_id カラム、name カラム、name_yomi カラムを取得する
+条件 A2 かつ B2 を満たすレコードを絞り込む
+A2: name カラムの値が 真 から始まる
+B2: name_yomi カラムの値が マ から始まる
+
+WHERE カラム名 LIKE 値% で、カラム名 カラムの値が 値 で始まるレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT customer_id, name, name_yomi FROM customer WHERE name LIKE "真%" AND name_yomi LIKE "サ%"; および SELECT customer_id, name, name_yomi FROM customer WHERE name LIKE "真%" AND name_yomi LIKE "マ%"; を書く*/
 
 <同僚に協力しよう>
 step1　メニュー名を指定して取得しよう
