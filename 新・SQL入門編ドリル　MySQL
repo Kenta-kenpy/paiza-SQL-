@@ -1411,6 +1411,27 @@ WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たす�
 よって、SELECT * FROM customer WHERE residence LIKE "%島県%" OR residence LIKE "%京都%" OR residence LIKE "%児島%" OR residence IS NULL ORDER BY residence, name_yomi; と書く*/
 
 final　同僚に協力しよう
+SELECT * FROM menu WHERE category_id = 3 AND (name LIKE "%ポテ%" OR name LIKE "%テト%" OR name LIKE "%トフ%" OR name LIKE "%フー%" OR name LIKE "%ーリ%" OR name LIKE "%リー%");
+/*問題文で提示されている条件は、次のように読み替えることができる
+「デザートのメニュー名どうしで」=「category_id カラムの値が 3 であるものどうしで」
+デザートの category_id カラムの値は 3
+SELECT * FROM category
+id	name
+1	バーガー
+2	サイドメニュー
+3	デザート
+4	ドリンク
+「ポテトフーリー 内の連続する 2 文字が、他のデザートのメニュー名に部分一致するか」=「デザートのレコードの name カラムの値に ポテ、テト、トフ、フー、ーリ、リー のいずれかが少なくとも 1 つ含まれるレコードを絞り込む」
+つまり、menu テーブルについて、条件 A かつ B を満たすレコードを取得すればよいとわかる
+A: category_id カラムの値が 3 である
+B: name カラムの値に ポテ、テト、トフ、フー、ーリ、リー のいずれかが少なくとも 1 つ含まれる
+
+WHERE カラム名 LIKE %値% で、カラム名 カラムの値に 値 が含まれるレコードを絞り込むことができる
+WHERE カラム名 = 値 で、カラム名 カラムの値が 値 であるレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+WHERE 条件1 AND (条件2 OR 条件3) で、条件1 を満たし、かつ 条件2 または 条件3 を満たすレコードを絞り込むことができる（演算の順番を変えることができる）
+よって、SELECT * FROM menu WHERE category_id = 3 AND (name LIKE "%ポテ%" OR name LIKE "%テト%" OR name LIKE "%トフ%" OR name LIKE "%フー%" OR name LIKE "%ーリ%" OR name LIKE "%リー%"); と書く*/
 
 <しりとりで勝つ>
 step1　メニュー名を指定して取得しよう
