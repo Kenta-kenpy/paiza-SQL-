@@ -1435,7 +1435,21 @@ WHERE 条件1 AND (条件2 OR 条件3) で、条件1 を満たし、かつ 条�
 
 <しりとりで勝つ>
 step1　メニュー名を指定して取得しよう
+SELECT * FROM menu WHERE name LIKE "%ィー";
+/*問題文から、menu テーブルの name カラムの値が ィー で終わるレコードを取得すればよいとわかる
+WHERE カラム名 LIKE %値 で、カラム名 カラムの値が 値 で終わるレコードを絞り込むことができる
+よって、SELECT * FROM menu WHERE name LIKE "%ィー"; と書く*/
+
 step2　漢字名を指定して取得しよう
+SELECT name, name_yomi FROM customer WHERE name LIKE "%子" OR name LIKE "%月" OR name LIKE "%斗";
+/*問題文から、customer テーブルについて、
+name カラムと name_yomi カラムを取得する
+name カラムの値が 子、月、斗 のいずれかで終わるレコードを絞り込む
+ことをすればよいとわかる
+WHERE カラム名 LIKE %値 で、カラム名 カラムの値が 値 で終わるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT name, name_yomi FROM customer WHERE name LIKE "%子" OR name LIKE "%月" OR name LIKE "%斗"; と書く*/
+
 step3　会員名を指定して取得しよう
 step4　居住地を指定して取得しよう
 final　しりとりで勝つ
