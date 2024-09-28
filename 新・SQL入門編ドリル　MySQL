@@ -1451,8 +1451,46 @@ WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たす�
 よって、SELECT name, name_yomi FROM customer WHERE name LIKE "%子" OR name LIKE "%月" OR name LIKE "%斗"; と書く*/
 
 step3　会員名を指定して取得しよう
+SELECT * FROM customer WHERE name_yomi LIKE "%ャラ" OR name_yomi LIKE "%ウカ" OR name_yomi LIKE "%ウセイ" ORDER BY join_date;
+/*問題文から、customer テーブルについて、
+name_yomi カラムの値が ャラ、ウカ、ウセイ のいずれかで終わるレコードを絞り込む
+join_date カラムの昇順に並べ替える
+ことをすればよいとわかる
+WHERE カラム名 LIKE %値 で、カラム名 カラムの値が 値 で終わるレコードを絞り込むことができる
+WHERE 条件1 OR 条件2 で、条件1 または 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE name_yomi LIKE "%ャラ" OR name_yomi LIKE "%ウカ" OR name_yomi LIKE "%ウセイ" ORDER BY join_date; と書く*\
+
 step4　居住地を指定して取得しよう
+SELECT * FROM customer WHERE residence NOT LIKE "%県" AND residence IS NOT NULL ORDER BY residence, name_yomi;
+/*問題文から、customer テーブルについて、
+条件 A かつ B を満たすレコードを絞り込む
+A: residence カラムの値が 県 で終わらない
+B: residence カラムの値が NULL でない
+並びを次のように並べ替える
+residence カラムの値の昇順に並べ替える
+residence カラムの値が同じとき、name_yomi カラムの値の昇順に並べ替える
+
+WHERE カラム名 LIKE %値 で、カラム名 カラムの値が 値 で終わるレコードを絞り込むことができる
+WHERE カラム名 IS NOT NULL で、カラム名 カラムの値が NULL でないレコードを絞り込むことができる
+WHERE NOT 条件 で、条件 の否定を満たすレコードを絞り込むことができる
+WHERE 条件1 AND 条件2 で、条件1 かつ 条件2 の条件を満たすレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE NOT residence LIKE "%県" AND residence IS NOT NULL ORDER BY residence, name_yomi; と書く
+
+別解
+SELECT * FROM customer WHERE residence NOT LIKE "%県" AND residence IS NOT NULL ORDER BY residence, name_yomi;
+（NOT LIKE 演算子を利用した解答例です。）
+WHERE カラム名 NOT LIKE %値 で、カラム名 カラムの値が 値 で終わらないレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE NOT residence LIKE "%県" AND residence IS NOT NULL ORDER BY residence, name_yomi; で正解できる*/
+
 final　しりとりで勝つ
+SELECT * FROM customer WHERE name_yomi LIKE "%ン" ORDER BY name_yomi;
+/*問題文から、customer テーブルについて、
+name_yomi カラムの値が ン で終わるレコードを絞り込む
+name_yomi カラムの昇順に並べ替える
+ことをすればよいとわかる
+
+WHERE カラム名 LIKE %値 で、カラム名 カラムの値が 値 で終わるレコードを絞り込むことができる
+よって、SELECT * FROM customer WHERE name_yomi LIKE "%ン" ORDER BY name_yomi; と書く*/
 
 新・SQL入門編05ドリル
 <カテゴリごとの売上を求めよう>
