@@ -1502,6 +1502,12 @@ FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル�
 よって、SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ; と書く*/
 
 step2　カテゴリとメニューを内部結合しよう
+SELECT * FROM category INNER JOIN menu ON category.category_id = menu.category_id LIMIT 10 ;
+/*問題文から、カテゴリとメニューを、カテゴリ番号で内部結合すればよいとわかる
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はcategory テーブルのcategory_id カラムとmenu テーブルのcategory_id カラムの値が等しいこと
+よって、SELECT * FROM category INNER JOIN menu ON category.category_id = menu.category_id LIMIT 10 ; と書く*/
+
 step3　注文内容とメニューを内部結合しよう
 step4　データの欠けたテーブルを内部結合しよう
 final　IDなしのメニュー表を作ろう
