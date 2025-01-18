@@ -1509,7 +1509,20 @@ FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル�
 よって、SELECT * FROM category INNER JOIN menu ON category.category_id = menu.category_id LIMIT 10 ; と書く*/
 
 step3　注文内容とメニューを内部結合しよう
+SELECT * FROM ordered_menu INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ;
+/*問題文から、注文内容とメニューを、メニュー番号で内部結合すればよいとわかる
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと
+よって、SELECT * FROM ordered_menu INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ; と書く*/
+
 step4　データの欠けたテーブルを内部結合しよう
+SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ;
+/*問題文から、注文履歴と注文内容を、注文の通し番号で内部結合すればよいとわかる
+データが欠損していても、実装する内容は今までの問題と同じ
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと
+よって、SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ; と書く*/
+
 final　IDなしのメニュー表を作ろう
 
 <応急メニュー表>
