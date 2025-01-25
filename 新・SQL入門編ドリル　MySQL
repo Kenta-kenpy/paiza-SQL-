@@ -1524,6 +1524,13 @@ FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル�
 よって、SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ; と書く*/
 
 final　IDなしのメニュー表を作ろう
+SELECT menu.name, category.name, menu.price FROM menu INNER JOIN category ON menu.category_id = category.category_id;
+/*問題文から、メニューとカテゴリを内部結合すればよいとわかる
+そのあとにメニュー名、カテゴリ名、価格のみをこの順で取得すればよい
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はmenu テーブルのcategory_id カラムとcategory テーブルのcategory_id カラムの値が等しいこと
+SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル名 のテーブルの カラム名1, カラム名2, ... カラムを取得することができる
+よって、SELECT menu.name, category.name, menu.price FROM menu INNER JOIN category ON menu.category_id = category.category_id; と書く*/
 
 <応急メニュー表>
 step1　テーブルを左外部結合しよう 1
