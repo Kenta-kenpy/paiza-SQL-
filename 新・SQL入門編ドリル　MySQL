@@ -1534,10 +1534,40 @@ SELECT カラム名1, カラム名2, ... FROM テーブル名で、テーブル�
 
 <応急メニュー表>
 step1　テーブルを左外部結合しよう 1
+SELECT * FROM ordered LEFT OUTER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ;
+/*問題文から、注文履歴と注文内容を、注文の通し番号で左外部結合すればよいとわかる
+FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で左外部結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと
+よって、SELECT * FROM ordered LEFT OUTER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ; と書く*/
+
 step2　テーブルを左外部結合しよう 2
+SELECT * FROM ordered_menu LEFT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ;
+/*問題文から、注文内容とメニューを、メニュー番号で左外部結合すればよいとわかる
+FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で左外部結合することができる
+条件はordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと
+よって、SELECT * FROM ordered_menu LEFT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ; と書く*/
+
 step3　テーブルを右外部結合しよう 1
+SELECT * FROM ordered RIGHT OUTER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ;
+/*問題文から、注文履歴と注文内容を、注文の通し番号で右外部結合すればよいとわかる
+FROM テーブル名1 RIGHT OUTER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で右外部結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと
+よって、SELECT * FROM ordered RIGHT OUTER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LIMIT 10 ; と書く*/
+
 step4　テーブルを右外部結合しよう 2
+SELECT * FROM ordered_menu RIGHT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ;
+/*問題文から、注文内容とメニューを、メニュー番号で右外部結合すればよいとわかる
+FROM テーブル名1 RIGHT OUTER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で右外部結合することができる
+条件はordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと
+よって、SELECT * FROM ordered_menu RIGHT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ; と書く*/
+
 final　応急メニュー表
+SELECT menu.name, category.name, menu.price FROM menu LEFT OUTER JOIN category ON menu.category_id = category.category_id;
+/*問題文から、メニューの各レコードに対しカテゴリに対応するレコードがあれば結合し、なければNULLを返せばよいことがわかる。
+つまり、メニューにカテゴリを左外部結合すればよい。
+FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で左外部結合することができる
+条件はmenu テーブルのcategory_id カラムとcategory テーブルのcategory_id カラムの値が等しいこと
+よって、SELECT menu.name, category.name, menu.price FROM menu LEFT OUTER JOIN category ON menu.category_id = category.category_id; と書く*/
 
 <ウルトラ注文履歴>
 step1　3つのテーブルを内部結合しよう
