@@ -1571,10 +1571,41 @@ FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON 条件 で、テーブ
 
 <ウルトラ注文履歴>
 step1　3つのテーブルを内部結合しよう
+SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ;
+/*問題文から、3つのテーブルを、注文の通し番号、メニュー番号で内部結合すればよいとわかる
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと、ordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと
+よって、SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ; と書く*/
+
 step2　3つのテーブルを外部結合しよう
+SELECT * FROM ordered LEFT OUTER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LEFT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ;
+/*問題文から、3つのテーブルを、注文の通し番号、メニュー番号で左外部結合すればよいとわかる
+FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で左外部結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと、ordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと
+よって、SELECT * FROM ordered LEFT OUTER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LEFT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id LIMIT 10 ; と書く*/
+
 step3　全部盛り
+SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id INNER JOIN category ON menu.category_id = category.category_id LIMIT 10 ;
+/*問題文から、4つのテーブルを、注文の通し番号、メニュー番号、カテゴリ番号で内部結合すればよいとわかる
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと、ordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと、menu テーブルのcategory_id カラムとcategory テーブルのcategory_id カラムの値が等しいこと
+よって、SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id INNER JOIN category ON menu.category_id = category.category_id LIMIT 10 ; と書く*/
+
 step4　スーパー注文内容
+SELECT ordered_id, category.name, menu.name, ordered_menu.num, ordered_menu.sum FROM ordered_menu INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id INNER JOIN category ON menu.category_id = category.category_id ;
+/*問題文から、注文内容とメニューとカテゴリを、メニュー番号、カテゴリ番号で内部結合すればよいとわかる
+結合後のテーブルから注文の通し番号、カテゴリ名、メニュー名、メニューの注文数、小計をこの順で取得すればよい
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと、menu テーブルのcategory_id カラムとcategory テーブルのcategory_id カラムの値が等しいこと
+よって、SELECT ordered_id, category.name, menu.name, ordered_menu.num, ordered_menu.sum FROM ordered_menu INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id INNER JOIN category ON menu.category_id = category.category_id ; と書く*/
+
 final　ウルトラ注文履歴
+SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LEFT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id ;
+/*問題文より、注文履歴と注文内容を結合する際はNULLが許されないので、内部結合すればよい
+また、注文内容とメニューは左外部結合すればよい
+FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル名1 とテーブル名2 テーブルを条件で結合することができる
+条件はordered テーブルのordered_id カラムとordered_menu テーブルのordered_id カラムの値が等しいこと、ordered_menu テーブルのmenu_id カラムとmenu テーブルのmenu_id カラムの値が等しいこと、menu テーブルのcategory_id カラムとcategory テーブルのcategory_id カラムの値が等しいこと
+よって、SELECT * FROM ordered INNER JOIN ordered_menu ON ordered.ordered_id = ordered_menu.ordered_id LEFT OUTER JOIN menu ON ordered_menu.menu_id = menu.menu_id ; と書く*/
 
 新・SQL入門編05ドリル
 <カテゴリごとの売上を求めよう>
