@@ -1610,7 +1610,17 @@ FROM テーブル名1 INNER JOIN テーブル名2 ON 条件 で、テーブル�
 新・SQL入門編05ドリル
 <カテゴリごとの売上を求めよう>
 step1　売上を求めよう
+SELECT SUM(bill) FROM ordered;
+/*問題文から、カラム bill の合計を取得すればよいとわかる
+SELECT SUM(カラム名) FROM テーブル名 で、カラム名 カラムの合計を取得できる
+よって、SELECT SUM(bill) FROM ordered; と書く*/
+
 step2　売れた個数の合計を求めよう
+SELECT SUM(num) FROM ordered_menu;
+/*問題文から、すべてのメニューの注文数の合計を取得すればよいとわかる
+SELECT SUM(カラム名) FROM テーブル名 で、カラム名 カラムの合計を取得できる
+よって、SELECT SUM(num) FROM ordered_menu; と書く*/
+
 step3　全部1個ずつ
 step4　メニューごとの売上を求めよう
 final　カテゴリごとの売上を求めよう
