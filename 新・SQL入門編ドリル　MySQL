@@ -1680,7 +1680,25 @@ final　安くてたくさん
 新・SQL入門編06ドリル
 <カテゴリを開発しよう>
 step1　カテゴリを追加しよう
+INSERT INTO category(category_id, name)
+VALUES (5, '限定');
+SELECT *
+FROM category;
+/*問題文から、5番目 のカテゴリとして限定という名前のカテゴリを追加し、カテゴリをすべて取得すればよいとわかる
+INSERT INTO テーブル名(カラム1, カラム2, ...) VALUES (値1, 値2, ...)で、テーブルに含まれるカラム名と、カラム名に対応する値を指定することでレコードを追加することができる
+よって、INSERT INTO category(category_id, name) VALUES (5, '限定'); SELECT * FROM category; と書く*/
+
 step2　メニューを追加しよう
+INSERT INTO menu
+VALUES (28, 4, 'ロイヤルミルクティー', 300);
+SELECT *
+FROM menu
+WHERE category_id = 4;
+/*問題文から、28番目のメニューとしてカテゴリ番号4のドリンクに、ロイヤルミルクティーという名前で価格は300円のメニューを追加し、メニューのうち、カテゴリ番号4のレコードをすべて取得すればよいとわかる
+INSERT INTO テーブル名 VALUES (値1, 値2, ...)で、テーブルに含まれるカラム名に対応する値をすべて指定することにより、カラム名を省略しレコードを追加することができる
+WHERE カラム名 = 値で、カラム名カラムの値が値であるレコードを絞り込むことができる
+よって、INSERT INTO menu VALUES (28, 4, 'ロイヤルミルクティー', 300); SELECT * FROM menu WHERE category_id = 4; と書く*/
+
 step3　注文履歴にデータを追加しよう
 step4　顧客データを追加しよう
 final  カテゴリを開発しよう
