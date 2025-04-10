@@ -1622,8 +1622,25 @@ SELECT SUM(カラム名) FROM テーブル名 で、カラム名 カラムの合
 よって、SELECT SUM(num) FROM ordered_menu; と書く*/
 
 step3　全部1個ずつ
+SELECT SUM(price) FROM menu;
+/*問題文から、すべてのメニューを1つずつ買ったときにかかる合計金額を取得すればよいとわかる
+SELECT SUM(カラム名) FROM テーブル名 で、カラム名 カラムの合計を取得できる
+よって、SELECT SUM(price) FROM menu; と書く*/
+
 step4　メニューごとの売上を求めよう
+SELECT menu_id, SUM(sum) FROM ordered_menu GROUP BY menu_id;
+/*問題文から、各メニューごとに注文の合計金額を取得すればよいとわかる
+SELECT カラム名1, SUM(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1のグループごとにカラム名2 カラムの合計を取得できる
+よって、SELECT menu_id, SUM(sum) FROM ordered_menu GROUP BY menu_id; と書く*/
+
 final　カテゴリごとの売上を求めよう
+SELECT category_id, SUM(sum) FROM menu
+INNER JOIN ordered_menu ON menu.menu_id = ordered_menu.menu_id
+GROUP BY category_id;
+/*問題文から、メニューのカテゴリごとに全注文の合計金額を取得すればよいとわかる
+SELECT * FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1のカラム名 = テーブル名2のカラム名; で、テーブル名1とテーブル名2を、テーブル名1のカラム名とテーブル名2のカラム名で内部結合する
+また、SELECT カラム名1, SUM(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1のグループごとにカラム名2 カラムの合計を取得できる
+よって、SELECT category_id, SUM(sum) FROM menu INNER JOIN ordered_menu ON menu.menu_id = ordered_menu.menu_id GROUP BY category_id; と書く*/
 
 <カテゴリごとの平均価格を求めよう>
 step1　注文金額の平均を求めよう
