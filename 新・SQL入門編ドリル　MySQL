@@ -1644,8 +1644,23 @@ SELECT * FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1�
 
 <カテゴリごとの平均価格を求めよう>
 step1　注文金額の平均を求めよう
+SELECT AVG(bill) FROM ordered;
+/*問題文から、カラムbillの平均を取得すればよいとわかる
+SELECT AVG(カラム名) FROM テーブル名 で、カラム名カラムの平均を取得できる
+よって、SELECT AVG(bill) FROM ordered; と書く*/
+
 step2　注文数の平均を求めよう
+SELECT AVG(num) FROM ordered_menu;
+/*問題文から、numカラムの平均を取得すればよいとわかる
+SELECT AVG(カラム名) FROM テーブル名 で、カラム名カラムの平均を取得できる
+よって、SELECT AVG(num) FROM ordered_menu; と書く*/
+
 step3　全メニューの平均価格を求めよう
+SELECT AVG(price) FROM menu;
+/*問題文から、すべてのメニューの平均価格を取得すればよいとわかる
+SELECT AVG(カラム名) FROM テーブル名 で、カラム名カラムの平均を取得できる
+よって、SELECT AVG(price) FROM menu; と書く*/
+
 step4　メニューごとの平均注文数を求めよう
 final　カテゴリごとの平均価格を求めよう
 
