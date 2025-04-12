@@ -1662,7 +1662,16 @@ SELECT AVG(カラム名) FROM テーブル名 で、カラム名カラムの平�
 よって、SELECT AVG(price) FROM menu; と書く*/
 
 step4　メニューごとの平均注文数を求めよう
+SELECT menu_id, AVG(num) FROM ordered_menu GROUP BY menu_id;
+/*問題文から、各メニューごとに注文数の平均を取得すればよいとわかる
+SELECT カラム名1, AVG(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1のグループごとにカラム名2 の平均を取得できる
+よって、SELECT menu_id, AVG(num) FROM ordered_menu GROUP BY menu_id; と書く*/
+
 final　カテゴリごとの平均価格を求めよう
+SELECT category_id, AVG(price) FROM menu GROUP BY category_id;
+/*問題文から、各カテゴリごとにメニューの平均価格を取得すればよいとわかる
+SELECT カラム名1, AVG(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1のグループごとにカラム名2 の平均を取得できる
+よって、SELECT category_id, AVG(price) FROM menu GROUP BY category_id; と書く*/
 
 <各注文の最高単価メニューを求めよう>
 step1　最高額のメニューを求めよう
