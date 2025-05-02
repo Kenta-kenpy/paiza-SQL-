@@ -1675,8 +1675,17 @@ SELECT カラム名1, AVG(カラム名2) FROM テーブル名 GROUP BY カラム
 
 <各注文の最高単価メニューを求めよう>
 step1　最高額のメニューを求めよう
+SELECT MAX(price) FROM menu;
+/*問題文から、最も高いメニューの価格を取得すればよいとわかる
+SELECT MAX(カラム名) FROM テーブル名 で、カラム名カラムの最大値を取得できる
+よって、SELECT MAX(price) FROM menu; と書く*/
 
 step2　最低額のメニューを求めよう
+SELECT MIN(price) FROM menu;
+/*問題文から、最も安いメニューの価格を取得すればよいとわかる
+SELECT MIN(カラム名) FROM テーブル名 で、カラム名カラムの最小値を取得できる
+よって、SELECT MIN(price) FROM menu; と書く*/
+
 step3　注文金額の最低額と最高額を求めよう
 step4　カテゴリごとの最安・最高メニューを求めよう
 step5　ポテト王
