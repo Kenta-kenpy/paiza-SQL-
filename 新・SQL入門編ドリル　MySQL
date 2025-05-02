@@ -1687,6 +1687,12 @@ SELECT MIN(カラム名) FROM テーブル名 で、カラム名カラムの最�
 よって、SELECT MIN(price) FROM menu; と書く*/
 
 step3　注文金額の最低額と最高額を求めよう
+SELECT MIN(bill), MAX(bill) FROM ordered;
+/*問題文から、注文の合計金額の最小値と最大値を取得すればよいとわかる
+SELECT MIN(カラム名) FROM テーブル名 で、カラム名カラムの最小値を取得できる
+また、SELECT MAX(カラム名) FROM テーブル名 で、カラム名カラムの最大値を取得できる
+よって、SELECT MIN(bill), MAX(bill) FROM ordered; と書く*/
+
 step4　カテゴリごとの最安・最高メニューを求めよう
 step5　ポテト王
 final　各注文の最高単価メニューを求めよう
