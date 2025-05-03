@@ -1694,8 +1694,28 @@ SELECT MIN(カラム名) FROM テーブル名 で、カラム名カラムの最�
 よって、SELECT MIN(bill), MAX(bill) FROM ordered; と書く*/
 
 step4　カテゴリごとの最安・最高メニューを求めよう
+SELECT category_id, MIN(price), MAX(price) FROM menu GROUP BY category_id;
+/*問題文から、カテゴリごとに、最も安いメニューと高いメニューの価格を取得すればよいとわかる
+SELECT カラム名1, MIN(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1ごとにカラム名2カラムの最小値を取得できる
+よって、SELECT category_id, MIN(price), MAX(price) FROM menu GROUP BY category_id; と書く*/
+
 step5　ポテト王
+SELECT menu_id, MAX(num) FROM ordered_menu 
+WHERE menu_id BETWEEN 10 AND 12
+GROUP BY menu_id;
+/*問題文から、各サイズのポテトに対し、最も多かった注文数を取得すればよいとわかる
+SELECT カラム名1, MAX(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1ごとにカラム名2カラムの最大値を取得できる
+また、WHERE カラム名 BETWEEN 値1 AND 値2で、カラム名カラムの値が値1と値2の間に含まれるレコードを絞り込むことができる
+よって、SELECT menu_id, MAX(num) FROM ordered_menu WHERE menu_id BETWEEN 10 AND 12 GROUP BY menu_id; と書く*/
+
 final　各注文の最高単価メニューを求めよう
+SELECT ordered_id, MAX(price) FROM ordered_menu
+INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id
+GROUP BY ordered_id;
+/*問題文から、各ordered_idに対し、注文した中で最も単価が高いメニューの単価を取得すればよいとわかる
+SELECT * FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1のカラム名 = テーブル名2のカラム名;で、テーブル名1とテーブル名2を、テーブル名1のカラム名とテーブル名2のカラム名で内部結合する
+また、SELECT カラム名1, MAX(カラム名2) FROM テーブル名 GROUP BY カラム名1 で、カラム名1ごとにカラム名2カラムの最大値を取得できる
+よって、SELECT ordered_id, MAX(price) FROM ordered_menu INNER JOIN menu ON ordered_menu.menu_id = menu.menu_id GROUP BY ordered_id; と書く*/
 
 <カラムに名前を付けてみよう4>
 step1 カラムに名前を付けてみよう1
