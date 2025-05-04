@@ -1719,6 +1719,12 @@ SELECT * FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1�
 
 <カラムに名前を付けてみよう4>
 step1 カラムに名前を付けてみよう1
+SELECT ordered_id, bill AS 合計金額 FROM ordered
+LIMIT 10;
+/*問題文から、billカラムに合計金額という名前を付け、ordered_id、合計金額カラムを上から10件取得すればよいとわかる
+SELECT カラム名 AS 表示名で、カラム名カラムに表示名という名前をつける
+よって、SELECT ordered_id, bill AS 合計金額 FROM ordered LIMIT 10; と書く*/
+
 step2 カラムに名前を付けてみよう2
 step3 カラムに名前を付けてみよう3
 final カラムに名前を付けてみよう4
