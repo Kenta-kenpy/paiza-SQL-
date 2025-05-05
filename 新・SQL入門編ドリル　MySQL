@@ -1726,6 +1726,11 @@ SELECT カラム名 AS 表示名で、カラム名カラムに表示名という
 よって、SELECT ordered_id, bill AS 合計金額 FROM ordered LIMIT 10; と書く*/
 
 step2 カラムに名前を付けてみよう2
+SELECT menu_id AS メニュー番号, name AS メニュー名 FROM menu;
+/*問題文から、menu_idカラムにメニュー番号、nameカラムにメニュー名という名前をつけ、両方のカラムをこの順ですべて取得すればよいとわかる
+SELECT カラム名 AS 表示名で、カラム名カラムに表示名という名前をつける
+よって、SELECT menu_id AS メニュー番号, name AS メニュー名 FROM menu; と書く*/
+
 step3 カラムに名前を付けてみよう3
 final カラムに名前を付けてみよう4
 
