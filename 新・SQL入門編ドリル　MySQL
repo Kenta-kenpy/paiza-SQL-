@@ -1732,7 +1732,17 @@ SELECT カラム名 AS 表示名で、カラム名カラムに表示名という
 よって、SELECT menu_id AS メニュー番号, name AS メニュー名 FROM menu; と書く*/
 
 step3 カラムに名前を付けてみよう3
+SELECT MAX(bill) AS 最高金額 FROM ordered;
+/*問題文から、最高金額という名前で、カラムbillの最大値を取得すればよいとわかる
+SELECT カラム名 AS 表示名で、カラム名カラムに表示名という名前をつける
+よって、SELECT MAX(bill) AS 最高金額 FROM ordered; と書く*/
+
 final カラムに名前を付けてみよう4
+SELECT category_id AS カテゴリ番号, MAX(price) AS 最高価格 FROM menu GROUP BY カテゴリ番号;
+/*問題文から、category_idカラムにカテゴリ番号という名前をつけ、最高価格という名前で各カテゴリで最も高いメニューの価格を取得すればよいとわかる
+SELECT カラム名 AS 表示名で、カラム名カラムに表示名という名前をつける
+また、SELECT MAX(カラム名) FROM テーブル名 で、カラム名カラムの最大値を取得できる
+よって、SELECT category_id AS カテゴリ番号, MAX(price) AS 最高価格 FROM menu GROUP BY カテゴリ番号; と書く*/
 
 <会員が多い都道府県を調べよう>
 step1　一定以上の売上のメニューを調べよう
