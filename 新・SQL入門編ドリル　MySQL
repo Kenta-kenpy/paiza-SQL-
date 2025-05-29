@@ -1746,8 +1746,26 @@ SELECT カラム名 AS 表示名で、カラム名カラムに表示名という
 
 <会員が多い都道府県を調べよう>
 step1　一定以上の売上のメニューを調べよう
+SELECT menu_id, SUM(sum) FROM ordered_menu GROUP BY menu_id HAVING SUM(sum) >= 20000 ;
+/*問題文から、売上（=小計の合計）が20000以上のメニューについて、menu_idとその売上を取得すればよいとわかる
+GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+また、SELECT SUM(カラム名) FROM テーブル名 で、カラム名カラムの合計を取得できる
+よって、SELECT menu_id, SUM(sum) FROM ordered_menu GROUP BY menu_id HAVING SUM(sum) >= 20000 ; と書く*/
+
 step2　5品以上の注文を調べよう
+SELECT ordered_id, SUM(num) FROM ordered_menu GROUP BY ordered_id HAVING SUM(num) >= 5 ;
+/*問題文から、注文数の合計が5品以上だった注文について、そのordered_idと注文数の合計を取得すればよいとわかる
+GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+また、SELECT SUM(カラム名) FROM テーブル名 で、カラム名カラムの合計を取得できる
+よって、SELECT ordered_id, SUM(num) FROM ordered_menu GROUP BY ordered_id HAVING SUM(num) >= 5 ; と書く*/
+
 step3　平均注文数が多いメニューを調べよう
+SELECT menu_id, AVG(num) FROM ordered_menu GROUP BY menu_id HAVING AVG(num) >= 1.6 ;
+/*問題文から、一度に注文された数の平均が 1.6 以上であるメニューについて、menu_idと注文数の平均を取得すればよいとわかる
+GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+また、SELECT AVG(カラム名) FROM テーブル名 で、カラム名カラムの平均を取得できる
+よって、SELECT menu_id, AVG(num) FROM ordered_menu GROUP BY menu_id HAVING AVG(num) >= 1.6 ; と書く*/
+
 step4　メニューを3種類頼んだ注文を調べよう
 final　会員が多い都道府県を調べよう
 
