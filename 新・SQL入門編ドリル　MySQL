@@ -1767,7 +1767,19 @@ GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化
 よって、SELECT menu_id, AVG(num) FROM ordered_menu GROUP BY menu_id HAVING AVG(num) >= 1.6 ; と書く*/
 
 step4　メニューを3種類頼んだ注文を調べよう
+SELECT ordered_id FROM ordered_menu GROUP BY ordered_id HAVING COUNT(*) = 3;
+/*問題文から、メニューをちょうど3種類頼んだ注文のordered_idのみを取得すればよいとわかる
+GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+また、COUNT(*) は、レコードの数を返す関数であり、
+さらに、SELECT句でCOUNT関数を指定しなくても、絞り込む条件でCOUNT関数を使うことができる
+よって、SELECT ordered_id FROM ordered_menu GROUP BY ordered_id HAVING COUNT(*) = 3; と書く*/
+
 final　会員が多い都道府県を調べよう
+SELECT residence, COUNT(*) FROM customer GROUP BY residence HAVING COUNT(*) = 5 ;
+/*問題文から、会員がちょうど5人いる都道府県と、その人数を取得すればよいとわかる
+GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+また、COUNT(*) は、レコードの数を返す関数
+よって、SELECT residence, COUNT(*) FROM customer GROUP BY residence HAVING COUNT(*) = 5 ; と書く*/
 
 <安くてたくさん>
 step1　午後の売上が一定以上のメニューを調べよう
