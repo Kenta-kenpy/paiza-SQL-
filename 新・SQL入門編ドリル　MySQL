@@ -1783,10 +1783,77 @@ GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化
 
 <安くてたくさん>
 step1　午後の売上が一定以上のメニューを調べよう
+SELECT menu_id, SUM(sum)
+FROM ordered_menu
+INNER JOIN ordered
+ON ordered_menu.ordered_id = ordered.ordered_id
+WHERE ordered.datetime > '2021-12-17 12:00:00'
+GROUP BY menu_id
+HAVING SUM(sum) >= 20000;
+/*問題文から、日時が 2021-12-17 12:00:00 以降の売上（=小計の合計）が20000以上のメニューについて、menu_idとその売上を取得すればよいとわかる
+INNER JOIN テーブル名 ON 結合条件で、結合条件が一致するようにテーブルを結合することができる
+また、WHERE カラム名 >= 値 で、カラム名カラムの値が値より大きいレコードを絞り込むことができる
+さらに、code>GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+そして、SELECT SUM(カラム名) FROM テーブル名 で、カラム名カラムの合計を取得できる
+よって、SELECT menu_id, SUM(sum) FROM ordered_menu INNER JOIN ordered ON ordered_menu.ordered_id = ordered.ordered_id WHERE ordered.datetime > '2021-12-17 12:00:00' GROUP BY menu_id HAVING SUM(sum) >= 20000; と書く*/
+
 step2　会員が多い都道府県を調べよう 2
+SELECT residence, COUNT(*)
+FROM customer
+WHERE residence IS NOT NULL
+GROUP BY residence
+HAVING COUNT(*) >= 4;
+/*問題文から、出力結果に NULL を含めず、会員が4人以上いる都道府県と、その人数を取得すればよいとわかる
+WHERE カラム名 IS NOT NULL で、カラム名カラムの値がNULLではないレコードを取得できる
+また、GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+そして、COUNT(*) は、レコードの数を返す関数
+よって、SELECT residence, COUNT(*) FROM customer WHERE residence IS NOT NULL GROUP BY residence HAVING COUNT(*) >= 4; と書く*/
+
 step3　お昼時の5品以上の注文を調べよう
+SELECT ordered_menu.ordered_id, SUM(num)
+FROM ordered_menu
+INNER JOIN ordered
+ON ordered_menu.ordered_id = ordered.ordered_id
+WHERE ordered.datetime BETWEEN '2021-12-17 11:00:00' AND '2021-12-17 13:00:00'
+GROUP BY ordered_menu.ordered_id
+HAVING SUM(num) >= 5;
+/*問題文から、日時が 2021-12-17 11:00:00 以降 2021-12-17 13:00:00 以前のもので、注文数の合計が5品以上だった注文について、そのordered_idと注文数の合計を取得すればよいとわかる
+INNER JOIN テーブル名 ON 結合条件で、結合条件が一致するようにテーブルを結合することができる
+また、WHERE カラム名 BETWEEN 値1 AND 値2 で、カラム名カラムの値が値1と値2の間に含まれるレコードを絞り込むことができる
+さらに、GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+そして、SELECT SUM(カラム名) FROM テーブル名 で、カラム名カラムの合計を取得できる
+よって、SELECT ordered_menu.ordered_id, SUM(num)
+FROM ordered_menu INNER JOIN ordered ON ordered_menu.ordered_id = ordered.ordered_id WHERE ordered.datetime BETWEEN '2021-12-17 11:00:00' AND '2021-12-17 13:00:00' GROUP BY ordered_menu.ordered_id HAVING SUM(num) >= 5; と書く*/
+
 step4　高額注文によく含まれるメニューを調べよう
+SELECT menu_id, AVG(num)
+FROM ordered_menu
+INNER JOIN ordered
+ON ordered_menu.ordered_id = ordered.ordered_id
+WHERE ordered.bill >= 1500
+GROUP BY menu_id
+HAVING AVG(num) >= 1.6;
+/*問題文から、注文の合計金額が1500円以上であり、一度に注文された数の平均が 1.6 以上であるメニューについて、menu_idと注文数の平均を取得すればよいとわかる
+INNER JOIN テーブル名 ON 結合条件で、結合条件が一致するようにテーブルを結合することができる
+また、WHERE カラム名 >= 値 で、カラム名カラムの値が値以上のレコードを絞り込むことができる
+さらに、GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+そして、SELECT AVG(カラム名) FROM テーブル名 で、カラム名カラムの平均を取得できる
+よって、SELECT menu_id, AVG(num) FROM ordered_menu INNER JOIN ordered ON ordered_menu.ordered_id = ordered.ordered_id WHERE ordered.bill >= 1500 GROUP BY menu_id HAVING AVG(num) >= 1.6; と書く*/
+
 final　安くてたくさん
+SELECT ordered.ordered_id, ordered.bill
+FROM ordered_menu
+INNER JOIN ordered
+ON ordered_menu.ordered_id = ordered.ordered_id
+WHERE ordered.bill <= 1000
+GROUP BY ordered.ordered_id
+HAVING SUM(num) >= 5;
+/*問題文から、注文数の合計が5品以上だった注文であり、注文の合計金額が1000円以下の注文について、そのordered_idと注文の合計金額を取得すればよいとわかる
+INNER JOIN テーブル名 ON 結合条件で、結合条件が一致するようにテーブルを結合することができる
+また、WHERE カラム名 <= 値 で、カラム名カラムの値が値以下のレコードを絞り込むことができる
+さらに、GROUP BY カラム名 HAVING 条件で、カラム名カラムでグループ化した後に、条件でレコードを絞り込む
+そして、SELECT SUM(カラム名) FROM テーブル名 で、カラム名カラムの合計を取得できる
+よって、SELECT ordered.ordered_id, ordered.bill FROM ordered_menu INNER JOIN ordered ON ordered_menu.ordered_id = ordered.ordered_id WHERE ordered.bill <= 1000 GROUP BY ordered.ordered_id HAVING SUM(num) >= 5; と書く*/
 
 新・SQL入門編06ドリル
 <カテゴリを開発しよう>
@@ -1811,7 +1878,7 @@ WHERE カラム名 = 値で、カラム名カラムの値が値であるレコ�
 よって、INSERT INTO menu VALUES (28, 4, 'ロイヤルミルクティー', 300); SELECT * FROM menu WHERE category_id = 4; と書く*/
 
 step3　注文履歴にデータを追加しよう
-step4　顧客データを追加しよう
+step4　高額注文によく含まれるメニューを調べよう
 final  カテゴリを開発しよう
 
 <2件の注文されたメニューのデータを記録しよう>
