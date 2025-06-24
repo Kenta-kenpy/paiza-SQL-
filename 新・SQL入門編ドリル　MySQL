@@ -1878,8 +1878,35 @@ WHERE カラム名 = 値で、カラム名カラムの値が値であるレコ�
 よって、INSERT INTO menu VALUES (28, 4, 'ロイヤルミルクティー', 300); SELECT * FROM menu WHERE category_id = 4; と書く*/
 
 step3　注文履歴にデータを追加しよう
+INSERT INTO ordered(ordered_id, datetime, bill)
+VALUES (441, '2021-12-17 21:10:00', 200);
+SELECT *
+FROM ordered
+WHERE datetime >= '2021-12-17 20:00:00';
+/*問題文から、最新の 441番目 の注文履歴のデータとして、日時が 2021-12-17 21:10:00 で注文の合計金額が 200円 のレコードを追加し、日時が 2021-12-17 20:00:00 以降のデータ取得すればよいとわかる
+INSERT INTO テーブル名(カラム1, カラム2, ...) VALUES (値1, 値2, ...)で、テーブルに含まれるカラム名と、カラム名に対応する値を指定することでレコードを追加することができる
+WHERE カラム名 >= 値で、カラム名カラムの値が値以上のレコードを絞り込むことができる
+よって、INSERT INTO ordered(ordered_id, datetime, bill) VALUES (441, '2021-12-17 21:10:00', 200); SELECT * FROM ordered WHERE datetime >= '2021-12-17 20:00:00';と書く*/
+
 step4　高額注文によく含まれるメニューを調べよう
+INSERT INTO customer(customer_id, name, name_yomi, join_date,residence)
+VALUES (125, '崎山咲子', 'サキヤマサキコ', '2022-02-14', NULL);
+SELECT *
+FROM customer
+WHERE customer_id >= 100;
+/*問題文から、会員のリストに125番目の会員として崎山咲子（読み：サキヤマサキコ）さんが 2022-02-14 に登録したデータを追加し、会員番号が100以降のレコードを取得し、住んでいる都道府県は不明のため NULL とすればよいとわかる
+INSERT INTO テーブル名(カラム1, カラム2, ...) VALUES (値1, 値2, ...)で、テーブルに含まれるカラム名と、カラム名に対応する値を指定することでレコードを追加することができる（追加する値に NULL が含まれる場合省略できない）
+WHERE カラム名 >= 値で、カラム名カラムの値が値以上のレコードを絞り込むことができる
+よって、INSERT INTO customer(customer_id, name, name_yomi, join_date,residence) VALUES (125, '崎山咲子', 'サキヤマサキコ', '2022-02-14', NULL); SELECT * FROM customer WHERE customer_id >= 100;と書く*/
+
 final  カテゴリを開発しよう
+INSERT INTO category(category_id, name)
+VALUES (5, '大食い');
+SELECT *
+FROM category;
+/*問題文から、カテゴリの5番目に大食いカテゴリを追加し、現在のすべてのカテゴリを取得すればよいとわかる
+INSERT INTO テーブル名(カラム1, カラム2, ...) VALUES (値1, 値2, ...)で、テーブルに含まれるカラム名と、カラム名に対応する値を指定することでレコードを追加することができる
+よって、INSERT INTO category(category_id, name) VALUES (5, '大食い'); SELECT * FROM category;と書く*/
 
 <2件の注文されたメニューのデータを記録しよう>
 step1　カテゴリを2つ追加しよう
@@ -1888,3 +1915,44 @@ step3　メニューを4つ追加しよう
 step4　顧客データを2つ追加しよう
 final  2件の注文されたメニューのデータを記録しよう
 
+新・SQL入門編07ドリル
+<全サイズ150円>
+step1 メニュー名を更新しよう
+step2 名前の読みを更新しよう
+step3 注文数と小計を更新しよう
+step4 名前と名前の読みを更新しよう
+final 全サイズ150円
+
+<10円玉のいらないお店>
+step1 価格の値を増減させよう
+step2 注文数を増減させよう
+step3 バーガー20円引き
+step4 朝割
+final 10円玉のいらないお店
+
+新・SQL入門編08ドリル
+<条件を指定して削除しよう3>
+step1 IDを指定して削除しよう1
+step2 IDを指定して削除しよう2
+step3 条件を指定して削除しよう1
+step4 条件を指定して削除しよう2
+final 条件を指定して削除しよう3
+
+<TRUNCATE文で削除しよう2>
+step1 DELETE文で削除しよう1
+step2 DELETE文で削除しよう2
+step3 TRUNCATE文で削除しよう1
+final TRUNCATE文で削除しよう2
+
+新・SQL入門編09ドリル
+<データベースを作成しよう2>
+step1 データベースを作成しよう1
+final データベースを作成しよう2
+
+新・SQL入門編10ドリル
+<テーブルを作成しよう5>
+step1 テーブルを作成しよう1
+step2 テーブルを作成しよう2
+step3 テーブルを作成しよう3
+step4 テーブルを作成しよう4
+final テーブルを作成しよう5
