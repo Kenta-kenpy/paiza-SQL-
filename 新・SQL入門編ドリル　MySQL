@@ -1977,10 +1977,39 @@ WHERE カラム名 >= 値で、カラム名カラムの値が値以上のレコ�
 新・SQL入門編07ドリル
 <全サイズ150円>
 step1 メニュー名を更新しよう
+UPDATE menu SET name = "NEWエビバーガー" WHERE menu_id = 6 ;
+SELECT * FROM menu ;
+/*問題文から、メニュー番号6のメニュー名を「エビバーガー」から「NEWエビバーガー」に変更しSELECT * FROM menu;で出力すればよいとわかる
+問題文から、メニュー番号6のメニュー名を「エビバーガー」から「NEWエビバーガー」に変更しSELECT * FROM menu;で出力すればよいとわかる*/
+
 step2 名前の読みを更新しよう
+UPDATE customer SET name_yomi = "フクシマレナ" WHERE customer_id = 22 ;
+SELECT * FROM customer ;
+/*問題文から、通し番号22のふりがなを「フクシマレイナ」から「フクシマレナ」に変更しSELECT * FROM customer;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = 新しい値 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名カラムの値を新しい値に変更する
+よって、UPDATE customer SET name_yomi = "フクシマレナ" WHERE customer_id = 22 ; SELECT * FROM customer ; と書く*/
+
 step3 注文数と小計を更新しよう
+UPDATE ordered_menu SET num = 2, sum = 700 WHERE ordered_id = 3 AND menu_id = 8 ;
+SELECT * FROM ordered_menu ;
+/*問題文から、通し番号3、メニュー番号8の注文数を2に、小計を700に変更しSELECT * FROM ordered_menu;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = 新しい値 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名カラムの値を新しい値に変更する
+よって、UPDATE ordered_menu SET num = 2, sum = 700 WHERE ordered_id = 3 AND menu_id = 8 ; SELECT * FROM ordered_menu ; と書く*/
+
 step4 名前と名前の読みを更新しよう
+UPDATE customer SET name = "小高塁", name_yomi = "オダカルイ" WHERE customer_id = 50 ;
+SELECT * FROM customer ;
+/*問題文から、通し番号50の名前を小高塁に、ふりがなをオダカルイに変更しSELECT * FROM customer;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = 新しい値 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名カラムの値を新しい値に変更する
+よって、UPDATE customer SET name = "小高塁", name_yomi = "オダカルイ" WHERE customer_id = 50 ; SELECT * FROM customer ; と書く*/
+
 final 全サイズ150円
+UPDATE menu SET price = 150 WHERE name LIKE "フライドポテト%" ;
+SELECT * FROM menu ;
+/*問題文から、メニュー名がフライドポテトで始まるメニューの価格を150に変更しSELECT * FROM menu;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = 新しい値 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名カラムの値を新しい値に変更する
+WHERE カラム名 LIKE 値%: カラム名 カラムの値が 値 で始まるレコードを絞り込むことができる
+よって、UPDATE menu SET price = 150 WHERE name LIKE "フライドポテト%" ; SELECT * FROM menu ; と書く*/
 
 <10円玉のいらないお店>
 step1 価格の値を増減させよう
