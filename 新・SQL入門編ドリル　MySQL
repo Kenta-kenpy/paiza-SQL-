@@ -2013,7 +2013,15 @@ WHERE カラム名 LIKE 値%: カラム名 カラムの値が 値 で始まる�
 
 <10円玉のいらないお店>
 step1 価格の値を増減させよう
+UPDATE menu SET price = price + 10  WHERE menu_id = 8 ;
+SELECT * FROM menu ;
+/*問題文から、メニュー番号8の価格を10増やし、SELECT * FROM menu;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名に差分を加える
+よって、UPDATE menu SET price = price + 10 WHERE menu_id = 8 ; SELECT * FROM menu ; と書く*/
+
 step2 注文数を増減させよう
+
+
 step3 バーガー20円引き
 step4 朝割
 final 10円玉のいらないお店
