@@ -2020,9 +2020,20 @@ UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テ
 よって、UPDATE menu SET price = price + 10 WHERE menu_id = 8 ; SELECT * FROM menu ; と書く*/
 
 step2 注文数を増減させよう
-
+UPDATE ordered_menu SET num = num + 1 WHERE menu_id = 24 ;
+SELECT * FROM ordered_menu ;
+/*問題文から、メニュー番号24の注文に対して注文数を1増やし、SELECT * FROM ordered_menu;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名に差分を加える
+よって、UPDATE ordered_menu SET num = num + 1 WHERE menu_id = 24 ; SELECT * FROM ordered_menu ; と書く*/
 
 step3 バーガー20円引き
+UPDATE menu SET price = price - 20  WHERE category_id = 1 ;
+SELECT * FROM menu ;
+/*問題文から、カテゴリ番号1の価格を20減らし、SELECT * FROM menu;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名に差分を加える
+よって、UPDATE menu SET price = price - 20 WHERE category_id = 1 ; SELECT * FROM menu ; と書く
+また、バーガー類のメニュー名はすべてバーガーで終わるので、条件にはname LIKE "%バーガー"を指定しても正解することができる。*/
+
 step4 朝割
 final 10円玉のいらないお店
 
