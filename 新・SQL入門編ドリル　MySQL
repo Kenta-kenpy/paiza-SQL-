@@ -2035,7 +2035,20 @@ UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テ
 また、バーガー類のメニュー名はすべてバーガーで終わるので、条件にはname LIKE "%バーガー"を指定しても正解することができる。*/
 
 step4 朝割
+UPDATE ordered SET bill = bill - 10 WHERE datetime < "2021-12-17 11:00" ;
+SELECT * FROM ordered ;
+/*問題文から、注文日時が2021-12-17 11:00までの注文の合計金額を10減らし、SELECT * FROM ordered;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名に差分を加える
+よって、UPDATE ordered SET bill = bill - 10 WHERE datetime < "2021-12-17 11:00" ; SELECT * FROM ordered ; と書く*/
+
 final 10円玉のいらないお店
+UPDATE menu SET price = price - 50 WHERE price % 100 = 50 ;
+UPDATE menu SET price = price - 30 WHERE price % 100 = 30 ;
+SELECT * FROM menu ;
+/*問題文から、価格の下2桁が30のメニューの価格を30減らし、下2桁が50のメニューの価格を50減らしてSELECT * FROM menu;で出力すればよいとわかる
+UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テーブル名テーブルで条件に合うレコードの、カラム名に差分を加える
+よって、UPDATE menu SET price = price - 50 WHERE price % 100 = 50 ; UPDATE menu SET price = price - 30 WHERE price % 100 = 30 ; SELECT * FROM menu ; と書く
+また、価格から価格の下二桁を引く操作をまとめてUPDATE menu SET price = price - (price%100) ; SELECT * FROM menu ;と書いたり、実装されている関数を使うなどの方法でも実現できる。*/
 
 新・SQL入門編08ドリル
 <条件を指定して削除しよう3>
