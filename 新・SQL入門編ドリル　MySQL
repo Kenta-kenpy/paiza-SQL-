@@ -2053,10 +2053,38 @@ UPDATE テーブル名 SET カラム名 = カラム名 + 差分 WHERE 条件:テ
 新・SQL入門編08ドリル
 <条件を指定して削除しよう3>
 step1 IDを指定して削除しよう1
+DELETE FROM ordered WHERE ordered_id = 5;
+SELECT * FROM ordered;
+/*問題文から、注文の通し番号が5であるレコードを削除し、削除したあとのテーブルをSELECT * FROM ordered;で出力すればよいとわかる
+DELETE FROM テーブル名 WHERE 条件で、テーブル名の条件に当てはまるレコードを削除することができる
+よって、DELETE FROM ordered WHERE ordered_id = 5; SELECT * FROM ordered; と書く*/
+
 step2 IDを指定して削除しよう2
+DELETE FROM menu WHERE menu_id = 12;
+SELECT * FROM menu;
+/*問題文から、メニュー番号が12であるレコードを削除し、削除したあとのテーブルをSELECT * FROM menu;で出力すればよいとわかる
+DELETE FROM テーブル名 WHERE 条件で、テーブル名の条件に当てはまるレコードを削除することができる
+よって、DELETE FROM menu WHERE menu_id = 12; SELECT * FROM menu; と書く*/
+
 step3 条件を指定して削除しよう1
+DELETE FROM ordered_menu WHERE ordered_id = 3;
+SELECT * FROM ordered_menu;
+/*DELETE FROM テーブル名 WHERE 条件で、テーブル名の条件に当てはまるレコードを削除することができる
+よって、DELETE FROM ordered_menu WHERE ordered_id = 3; SELECT * FROM ordered_menu; と書く*/
+
 step4 条件を指定して削除しよう2
+DELETE FROM menu WHERE price <= 200;
+SELECT * FROM menu;
+/*問題文から、価格が200であるレコードを削除し、削除したあとのテーブルをSELECT * FROM menu ;で出力すればよいとわかる
+DELETE FROM テーブル名 WHERE 条件で、テーブル名の条件に当てはまるレコードを削除することができる
+よって、DELETE FROM menu WHERE price <= 200; SELECT * FROM menu; と書く*/
+
 final 条件を指定して削除しよう3
+DELETE FROM customer WHERE join_date BETWEEN '2021-08-13' AND '2021-09-13';
+SELECT * FROM customer;
+/*問題文から、入会日が2021-08-13 から 2021-09-13 の間に含まれる会員のレコードを削除し、削除したあとのテーブルをSELECT * FROM customer ;で出力すればよいとわかる
+DELETE FROM テーブル名 WHERE 条件で、テーブル名の条件に当てはまるレコードを削除することができる
+よって、DELETE FROM menu WHERE price <= 200; SELECT * FROM menu; と書く*/
 
 <TRUNCATE文で削除しよう2>
 step1 DELETE文で削除しよう1
