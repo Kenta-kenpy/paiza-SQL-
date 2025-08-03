@@ -2088,9 +2088,36 @@ DELETE FROM テーブル名 WHERE 条件で、テーブル名の条件に当て�
 
 <TRUNCATE文で削除しよう2>
 step1 DELETE文で削除しよう1
+DELETE FROM category ;
+SELECT COUNT(*) FROM category ;
+/*問題文から、category テーブルのすべてのレコードを削除し、削除したあとのテーブルの件数をSELECT COUNT(*) FROM category ;で出力すればよいとわかる
+DELETE FROM テーブル名でテーブル名のレコードをすべて削除することができる
+よって、DELETE FROM category ;
+SELECT COUNT(*) FROM category ; と書く*/
+
 step2 DELETE文で削除しよう2
+DELETE FROM ordered_menu ;
+SELECT COUNT(*) FROM ordered_menu ;
+/*問題文から、ordered_menu テーブルのすべてのレコードを削除し、削除したあとのテーブルの件数をSELECT COUNT(*) FROM ordered_menu ;で出力すればよいとわかる
+DELETE FROM テーブル名でテーブル名のレコードをすべて削除することができる
+よって、DELETE FROM ordered_menu ;
+SELECT COUNT(*) FROM ordered_menu ; と書く*/
+
 step3 TRUNCATE文で削除しよう1
+TRUNCATE TABLE category ;
+SELECT COUNT(*) FROM category ;
+/*問題文から、category テーブルのすべてのレコードを削除し、削除したあとのテーブルの件数をSELECT COUNT(*) FROM category ;で出力すればよいとわかる
+TRUNCATE TABLE テーブル名でテーブル名のレコードをすべて削除することができる
+よって、TRUNCATE TABLE category ;
+SELECT COUNT(*) FROM category ; と書く*/
+
 final TRUNCATE文で削除しよう2
+TRUNCATE TABLE ordered_menu ;
+SELECT COUNT(*) FROM ordered_menu ;
+/*問題文から、ordered_menu テーブルのすべてのレコードを削除し、削除したあとのテーブルの件数をSELECT COUNT(*) FROM ordered_menu ;で出力すればよいとわかる
+TRUNCATE TABLE テーブル名でテーブル名のレコードをすべて削除することができる
+よって、TRUNCATE TABLE ordered_menu ;
+SELECT COUNT(*) FROM ordered_menu ; と書く*/
 
 新・SQL入門編09ドリル
 <データベースを作成しよう2>
