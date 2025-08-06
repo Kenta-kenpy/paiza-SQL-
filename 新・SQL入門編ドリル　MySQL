@@ -2122,7 +2122,18 @@ SELECT COUNT(*) FROM ordered_menu ; と書く*/
 新・SQL入門編09ドリル
 <データベースを作成しよう2>
 step1 データベースを作成しよう1
+CREATE DATABASE practice;
+SHOW databases;
+/*問題文から、新しくpracticeデータベースを作成し、データベース一覧をSHOW databases;で出力すればよいとわかる
+CREATE DATABASE 名前で、データベースを作成することができる
+よって、CREATE DATABASE practice; SHOW databases; と書く*/
+
 final データベースを作成しよう2
+CREATE DATABASE theater;
+SHOW databases;
+/*問題文から、新しくtheaterデータベースを作成し、データベース一覧をSHOW databases;で出力すればよいとわかる
+CREATE DATABASE 名前で、データベースを作成することができる
+よって、CREATE DATABASE theater; SHOW databases; と書く*/
 
 新・SQL入門編10ドリル
 <テーブルを作成しよう5>
