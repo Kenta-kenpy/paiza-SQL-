@@ -2138,7 +2138,63 @@ CREATE DATABASE 名前で、データベースを作成することができる
 新・SQL入門編10ドリル
 <テーブルを作成しよう5>
 step1 テーブルを作成しよう1
+CREATE TABLE practice1(
+id INTEGER PRIMARY KEY,
+name VARCHAR(140) NOT NULL
+); 
+DESC practice1 ;
+/*問題文から、新しくpractice1テーブルを作成し、その情報をDESC practice1;で出力すればよいとわかる
+CREATE TABLE テーブル名(カラム定義)で、テーブルを作成することができる
+カラムの定義はカラム名 データ型 制約からなり、複数のカラムを定義する場合はカンマで区切る
+よって、CREATE TABLE practice1( id INTEGER PRIMARY KEY, name VARCHAR(140) NOT NULL ); DESC practice1 ; と書く*/
+
 step2 テーブルを作成しよう2
+CREATE TABLE practice2(
+id INTEGER PRIMARY KEY,
+name VARCHAR(140) NOT NULL,
+date DATE
+); 
+DESC practice2 ;
+/*問題文から、新しくpractice2テーブルを作成し、その情報をDESC practice2;で出力すればよいとわかる
+CREATE TABLE テーブル名(カラム定義)で、テーブルを作成することができる
+カラムの定義はカラム名 データ型 制約からなり、複数のカラムを定義する場合はカンマで区切る
+よって、CREATE TABLE practice2( id INTEGER PRIMARY KEY, name VARCHAR(140) NOT NULL, date DATE ); DESC practice2 ; と書く*/
+
 step3 テーブルを作成しよう3
+CREATE TABLE practice3(
+id INTEGER PRIMARY KEY,
+player_name VARCHAR(15) UNIQUE,
+rating INTEGER NOT NULL,
+play_date DATE NOT NULL
+); 
+DESC practice3 ;
+/*問題文から、新しくpractice3テーブルを作成し、その情報をDESC practice3;で出力すればよいとわかる
+CREATE TABLE テーブル名(カラム定義)で、テーブルを作成することができる
+カラムの定義はカラム名 データ型 制約からなり、複数のカラムを定義する場合はカンマで区切る
+よって、CREATE TABLE practice3( id INTEGER PRIMARY KEY, player_name VARCHAR(15) UNIQUE, rating INTEGER NOT NULL, play_date DATE NOT NULL ); DESC practice3 ; と書く*/
+
 step4 テーブルを作成しよう4
+CREATE TABLE coupon(
+id INTEGER PRIMARY KEY,
+menu_id INTEGER NOT NULL,
+price INTEGER NOT NULL
+); 
+DESC coupon ;
+/*問題文から、新しくcouponテーブルを作成し、その情報をDESC coupon;で出力すればよいとわかる
+CREATE TABLE テーブル名(カラム定義)で、テーブルを作成することができる
+カラムの定義はカラム名 データ型 制約からなり、複数のカラムを定義する場合はカンマで区切る
+よって、CREATE TABLE coupon( id INTEGER PRIMARY KEY, menu_id INTEGER NOT NULL, price INTEGER NOT NULL ); DESC coupon ; と書く*/
+
 final テーブルを作成しよう5
+CREATE TABLE employee(
+id INTEGER PRIMARY KEY,
+name VARCHAR(140) NOT NULL,
+role VARCHAR(140)
+); 
+DESC employee ;
+/*問題文から、新しくemployeeテーブルを作成し、その情報をDESC employee;で出力すればよいとわかる
+CREATE TABLE テーブル名(カラム定義)で、テーブルを作成することができる
+カラムの定義はカラム名 データ型 制約からなり、複数のカラムを定義する場合はカンマで区切る
+よって、CREATE TABLE employee( id INTEGER PRIMARY KEY, name VARCHAR(140) NOT NULL, role VARCHAR(140) ); DESC employee ; と書く*/
+
+
